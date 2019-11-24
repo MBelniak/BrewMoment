@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "448989421689",
+    "firebase_url": "https://brewmoment-6c136.firebaseio.com",
+    "project_id": "brewmoment-6c136",
+    "storage_bucket": "brewmoment-6c136.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448989421689:android:9763f9313935a1ce23f4a8",
+        "android_client_info": {
+          "package_name": "com.rubik.brewmoment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448989421689-lq9j4uq58btttir3c0r0n2666qci6ef5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rubik.brewmoment",
+            "certificate_hash": "0d91f327a51818e2219f3258e0c16e819ca8dac0"
+          }
+        },
+        {
+          "client_id": "448989421689-to0jn0mr78qt12rlcle1bo18nsn8fsgb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4lItdHlAwKPtNumgfukt-jMbm3ukOm_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448989421689-to0jn0mr78qt12rlcle1bo18nsn8fsgb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
