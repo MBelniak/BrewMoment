@@ -12,7 +12,7 @@ import com.rubik.brewmoment.R
 import com.rubik.brewmoment.data.Recipe
 import kotlinx.android.synthetic.main.recipe_item.view.*
 
-class RecipesRecycleViewAdapter(private val recipesDataset: LiveData<List<Recipe>>)
+class RecipesRecycleViewAdapter(private val recipesDataset: List<Recipe>)
     : RecyclerView.Adapter<RecipesRecycleViewAdapter.RecipesViewHolder>() {
 
     private var listener: OnItemClickListener? = null
@@ -51,14 +51,14 @@ class RecipesRecycleViewAdapter(private val recipesDataset: LiveData<List<Recipe
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.bind(recipesDataset.value!![position])
+        holder.bind(recipesDataset[position])
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = recipesDataset.value!!.size
+    override fun getItemCount() = recipesDataset.size
 
     fun getItem(position: Int): Recipe {
-        return recipesDataset.value?.get(position)!!
+        return recipesDataset[position]
     }
 
     interface OnItemClickListener {
