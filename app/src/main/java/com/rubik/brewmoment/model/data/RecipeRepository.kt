@@ -1,4 +1,4 @@
-package com.rubik.brewmoment.data
+package com.rubik.brewmoment.model.data
 
 import android.app.Application
 import android.os.AsyncTask

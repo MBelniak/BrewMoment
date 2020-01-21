@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="108dp">
+        android:layout_height="150dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/border"
+            android:background="@drawable/home_buttons_border"
             android:baselineAligned="false"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
@@ -24,42 +25,42 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:orientation="vertical"
-                android:weightSum="3">
+                android:weightSum="8">
 
                 <TextView
                     android:id="@+id/recipe_name"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:gravity="center_vertical"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:paddingLeft="3dip"
                     android:paddingRight="3dip"
-                    android:text="Sample recipe"
+                    android:text="Sample recipe - very long name maaaaaan"
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/brewing_time"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:paddingLeft="3dip"
                     android:paddingRight="3dip"
                     android:text="@string/brew_time"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/recipe_author"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:gravity="center_vertical"
                     android:paddingLeft="3dip"
                     android:paddingRight="3dip"
                     android:text="@string/author"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,6 +70,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@mipmap/ic_drip_icon_foreground" />

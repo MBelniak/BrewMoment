@@ -11,11 +11,23 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <activity
-        android:id="@+id/nav_recipes"
-        android:name="com.rubik.brewmoment.ui.recipes.RecipesTabsActivity"
-        android:label="@string/menu_recipes"
-        tools:layout="@layout/activity_recipes_tabs" />
+    <fragment
+        android:id="@+id/nav_my_recipes"
+        android:name="com.rubik.brewmoment.ui.recipes.MyRecipesFragment"
+        android:label="@string/menu_my_recipes"
+        tools:layout="@layout/fragment_recipes_list" />
+
+    <fragment
+        android:id="@+id/nav_common_recipes"
+        android:name="com.rubik.brewmoment.ui.recipes.CommonRecipesFragment"
+        android:label="@string/menu_common_recipes"
+        tools:layout="@layout/fragment_recipes_list" />
+
+    <fragment
+        android:id="@+id/nav_users_recipes"
+        android:name="com.rubik.brewmoment.ui.recipes.UsersRecipesFragment"
+        android:label="@string/menu_users_recipes"
+        tools:layout="@layout/fragment_recipes_list" />
 
     <fragment
         android:id="@+id/nav_results"

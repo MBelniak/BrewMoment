@@ -19,7 +19,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@drawable/border"
+            android:background="@drawable/home_buttons_border"
             android:clickable="false">
 
             <LinearLayout
@@ -61,7 +61,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@drawable/border"
+            android:background="@drawable/home_buttons_border"
             android:clickable="false">
 
             <LinearLayout
@@ -102,7 +102,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@drawable/border"
+            android:background="@drawable/home_buttons_border"
             android:clickable="false">
 
             <LinearLayout

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.recipes.chosen_recipe.RecipeDetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/topLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/chosen_recipe_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip"
+            android:paddingBottom="10dip"
+            android:text="@string/chosen_recipe_title"
+            android:textSize="35sp"/>
+
+        <TextView
+            android:id="@+id/chosen_recipe_eq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip"
+            android:paddingBottom="5dip"
+            android:text="@string/chosen_recipe_eq"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/chosen_recipe_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dip"
+            android:paddingTop="5dip"
+            android:paddingRight="3dip"
+            android:paddingBottom="5dip"
+            android:text="nflkjsdfjlksgjldfn"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/chosen_recipe_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dip"
+            android:paddingTop="5dip"
+            android:paddingRight="3dip"
+            android:paddingBottom="5dip"
+            android:text="@string/chosen_recipe_author"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/chosen_recipe_grind_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dip"
+            android:paddingTop="5dip"
+            android:paddingRight="3dip"
+            android:paddingBottom="5dip"
+            android:text="@string/chosen_recipe_grind_level"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/chosen_recipe_brew_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dip"
+            android:paddingTop="5dip"
+            android:paddingRight="3dip"
+            android:paddingBottom="5dip"
+            android:text="@string/chosen_recipe_brew_time"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/chosen_recipe_brew_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dip"
+            android:paddingTop="5dip"
+            android:paddingRight="3dip"
+            android:paddingBottom="5dip"
+            android:text="@string/chosen_recipe_brew_temperature"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/chosen_recipe_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingTop="15dip"
+        android:paddingRight="3dip"
+        android:text="@string/chosen_recipe_steps"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topLinearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/start_brew_linear_border">
+
+        <Button
+            android:id="@+id/chosen_recipe_brew_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="40dip"
+            android:layout_marginStart="10dip"
+            android:layout_marginEnd="10dip"
+            android:background="@drawable/start_brew_border"
+            android:text="@string/chosen_recipe_brew_button"
+            android:textSize="20sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

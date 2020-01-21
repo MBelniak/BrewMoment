@@ -13,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.ui.recipes.chosen_recipe.RecipeDetailsActivity
-import com.rubik.brewmoment.view_model.MyRecipesViewModel
+import com.rubik.brewmoment.view_model.UsersRecipesViewModel
 
-class MyRecipesFragment : Fragment() {
+
+
+class UsersRecipesFragment : Fragment() {
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var rootView: View
-    private lateinit var myRecipesViewModel: MyRecipesViewModel
+    private lateinit var usersRecipesViewModel: UsersRecipesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,14 +30,15 @@ class MyRecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_recipes_list, container, false)
-        myRecipesViewModel = ViewModelProviders.of(this).get(MyRecipesViewModel::class.java)
+        usersRecipesViewModel = ViewModelProviders.of(this).get(UsersRecipesViewModel::class.java)
         linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         recyclerView = rootView.findViewById(R.id.recipe_recycle_view)
 
-        recyclerView.adapter = RecipesRecycleViewAdapter(myRecipesViewModel.recipes.value!!,
-            activity!!.applicationContext)
-        myRecipesViewModel.recipes.observe(this, Observer {
-                    (recyclerView.adapter as RecipesRecycleViewAdapter).notifyDataSetChanged()})
+        recyclerView.adapter = RecipesRecycleViewAdapter(
+            usersRecipesViewModel.recipes.value!!, activity!!.applicationContext)
+        usersRecipesViewModel.recipes.observe(this, Observer {
+            (recyclerView.adapter as RecipesRecycleViewAdapter).notifyDataSetChanged()})
+
         (recyclerView.adapter as RecipesRecycleViewAdapter).setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(recipe: Recipe) {
                 val intent = Intent(activity, RecipeDetailsActivity::class.java)

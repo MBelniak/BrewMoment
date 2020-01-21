@@ -1,39 +1,46 @@
 package com.rubik.brewmoment.ui.recipes
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
-import com.rubik.brewmoment.data.Recipe
+import com.rubik.brewmoment.model.data.Recipe
+import com.rubik.brewmoment.model.EqTypeEnum
 import kotlinx.android.synthetic.main.recipe_item.view.*
 
-class RecipesRecycleViewAdapter(private val recipesDataset: List<Recipe>)
+class RecipesRecycleViewAdapter(private val recipesDataset: List<Recipe>, val context: Context)
     : RecyclerView.Adapter<RecipesRecycleViewAdapter.RecipesViewHolder>() {
 
-    private var listener: OnItemClickListener? = null
+    private lateinit var listener: OnItemClickListener
 
     inner class RecipesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener?.onItemClick(getItem(position))
+                    listener.onItemClick(getItem(position))
                 }
             }
         }
 
-        var recipeName: TextView = itemView.recipe_name
-        var recipeAuthor: TextView = itemView.recipe_author
-        var brewingTime: TextView = itemView.brewing_time
+        private var recipeName: TextView = itemView.recipe_name
+        private var recipeAuthor: TextView = itemView.recipe_author
+        private var brewingTime: TextView = itemView.brewing_time
+        private var image: ImageView = itemView.image
         fun bind(recipe: Recipe) {
-            recipeName.text = recipe.name
-            recipeAuthor.text = recipe.author
-            brewingTime.text = recipe.brewTimeToString()
+            recipeName.text = recipe.title
+            recipeAuthor.text = context.getString(R.string.author, recipe.author)
+            brewingTime.text = context.getString(R.string.brew_time, recipe.brewTimeToString())
+            when (recipe.equipment) {
+                EqTypeEnum.AEROPRESS -> image.setImageResource(R.mipmap.ic_aeropress_icon)
+                EqTypeEnum.DRIP -> image.setImageResource(R.mipmap.ic_drip_icon)
+                EqTypeEnum.FRENCH_PRESS -> image.setImageResource(R.mipmap.ic_french_icon)
+            }
         }
     }
 
@@ -43,14 +50,11 @@ class RecipesRecycleViewAdapter(private val recipesDataset: List<Recipe>)
         // create a new view
         val recipeData = LayoutInflater.from(parent.context)
             .inflate(R.layout.recipe_item, parent, false) as LinearLayout
-
         return RecipesViewHolder(recipeData)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
         holder.bind(recipesDataset[position])
     }
 
@@ -61,11 +65,10 @@ class RecipesRecycleViewAdapter(private val recipesDataset: List<Recipe>)
         return recipesDataset[position]
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(recipe: Recipe)
-    }
-
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
+}
+interface OnItemClickListener {
+    fun onItemClick(recipe: Recipe)
 }

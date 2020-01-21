@@ -1,4 +1,4 @@
-package com.rubik.brewmoment.data
+package com.rubik.brewmoment.model.data
 
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

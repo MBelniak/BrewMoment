@@ -1,0 +1,19 @@
+{
+  "recipes": [
+    {
+      "title": "The Ultimate V60 Technique",
+      "author": "James Hoffmann",
+      "authorEmail": "",
+      "description": "Universal drip V60 method, published at James' YouTube channel",
+      "equipment": "Drip / Chemex",
+      "brewTime": "180",
+      "grindLevel":  "Medium (drip V60)",
+      "isDefault": "true",
+      "steps": [
+        { "authorsTips": "aaaaa", "temperature":  "90"}
+      ]
+    }
+  ]
+}
+
+

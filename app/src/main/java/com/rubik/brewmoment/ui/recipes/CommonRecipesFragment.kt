@@ -1,25 +1,25 @@
 package com.rubik.brewmoment.ui.recipes
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.Recipe
+import com.rubik.brewmoment.view_model.CommonRecipesViewModel
+import android.content.Intent
 import com.rubik.brewmoment.ui.recipes.chosen_recipe.RecipeDetailsActivity
-import com.rubik.brewmoment.view_model.MyRecipesViewModel
 
-class MyRecipesFragment : Fragment() {
+
+class CommonRecipesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var rootView: View
-    private lateinit var myRecipesViewModel: MyRecipesViewModel
+    private lateinit var commonRecipesViewModel: CommonRecipesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,14 +27,13 @@ class MyRecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_recipes_list, container, false)
-        myRecipesViewModel = ViewModelProviders.of(this).get(MyRecipesViewModel::class.java)
         linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        commonRecipesViewModel = ViewModelProviders.of(this).get(CommonRecipesViewModel::class.java)
         recyclerView = rootView.findViewById(R.id.recipe_recycle_view)
 
-        recyclerView.adapter = RecipesRecycleViewAdapter(myRecipesViewModel.recipes.value!!,
+        recyclerView.adapter = RecipesRecycleViewAdapter(commonRecipesViewModel.recipes,
             activity!!.applicationContext)
-        myRecipesViewModel.recipes.observe(this, Observer {
-                    (recyclerView.adapter as RecipesRecycleViewAdapter).notifyDataSetChanged()})
+
         (recyclerView.adapter as RecipesRecycleViewAdapter).setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(recipe: Recipe) {
                 val intent = Intent(activity, RecipeDetailsActivity::class.java)
@@ -48,7 +47,6 @@ class MyRecipesFragment : Fragment() {
 
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
-
         return rootView
     }
 }
