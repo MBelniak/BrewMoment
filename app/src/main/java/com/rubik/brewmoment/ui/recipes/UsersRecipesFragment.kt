@@ -43,7 +43,7 @@ class UsersRecipesFragment : Fragment() {
             override fun onItemClick(recipe: Recipe) {
                 val intent = Intent(activity, RecipeDetailsActivity::class.java)
                 val bundle = Bundle()
-                bundle.putInt("RecipeId", 0)
+                bundle.putString("RecipeKeey", recipe.key)
                 bundle.putBoolean("IsDefault", true)
                 intent.putExtras(bundle)
                 startActivity(intent)

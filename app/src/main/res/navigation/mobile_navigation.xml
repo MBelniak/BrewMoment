@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_recipes_list" />
 
     <fragment
+        android:id="@+id/nav_create_recipe"
+        android:name="com.rubik.brewmoment.ui.recipes.CreateRecipeFragment"
+        android:label="@string/menu_create_recipes"
+        tools:layout="@layout/fragment_create_recipe" />
+
+    <fragment
         android:id="@+id/nav_results"
         android:name="com.rubik.brewmoment.ui.results.ResultsFragment"
         android:label="@string/menu_results"

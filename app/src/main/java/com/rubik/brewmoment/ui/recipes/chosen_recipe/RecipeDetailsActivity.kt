@@ -4,23 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.TextView
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.CommonRecipesData
 import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.model.data.RecipesDAO
+import com.rubik.brewmoment.ui.brew.BrewActivity
+import kotlinx.android.synthetic.main.activity_recipe_details.*
 
 class RecipeDetailsActivity : AppCompatActivity() {
 
     private lateinit var recipe: Recipe
-    private lateinit var recipeTitle: TextView
-    private lateinit var recipeEq: TextView
-    private lateinit var recipeAuthor: TextView
-    private lateinit var recipeGrindLevel: TextView
-    private lateinit var recipeTemperature: TextView
-    private lateinit var recipeDescription: TextView
-    private lateinit var recipeSteps: TextView
-    private lateinit var recipeBrewTime: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,24 +21,26 @@ class RecipeDetailsActivity : AppCompatActivity() {
         initRecipe(intent)
 
         val actionBar = supportActionBar
-        actionBar!!.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.title = resources.getString(R.string.recipe_details_title)
 
-        recipeTitle = findViewById(R.id.chosen_recipe_title)
-        recipeEq = findViewById(R.id.chosen_recipe_eq)
-        recipeAuthor = findViewById(R.id.chosen_recipe_author)
-        recipeBrewTime = findViewById(R.id.chosen_recipe_brew_time)
-        recipeGrindLevel = findViewById(R.id.chosen_recipe_grind_level)
-        recipeTemperature = findViewById(R.id.chosen_recipe_brew_temperature)
-        recipeDescription = findViewById(R.id.chosen_recipe_description)
-        recipeSteps = findViewById(R.id.chosen_recipe_steps)
+        chosen_recipe_title.text = recipe.title
+        chosen_recipe_eq.text = applicationContext.getString(R.string.chosen_recipe_eq, recipe.equipment.EqName)
+        chosen_recipe_author.text = applicationContext.getString(R.string.chosen_recipe_author, recipe.author)
+        chosen_recipe_grind_level.text = applicationContext.getString(R.string.chosen_recipe_grind_level, recipe.grindLevel.grindLevel)
+        chosen_recipe_brew_temperature.text = applicationContext.getString(R.string.chosen_recipe_brew_temperature, recipe.getTemperature())
+        chosen_recipe_brew_time.text = applicationContext.getString(R.string.chosen_recipe_brew_time, recipe.brewTimeToString())
+        chosen_recipe_steps.text = applicationContext.getString(R.string.chosen_recipe_steps, recipe.getStepsAsString())
 
-        recipeTitle.text = recipe.title
-        recipeEq.text = applicationContext.getString(R.string.chosen_recipe_eq, recipe.equipment.EqName)
-        recipeAuthor.text = applicationContext.getString(R.string.chosen_recipe_author, recipe.author)
-        recipeGrindLevel.text = applicationContext.getString(R.string.chosen_recipe_grind_level, recipe.grindLevel.grindLevel)
-        recipeTemperature.text = applicationContext.getString(R.string.chosen_recipe_brew_temperature, recipe.getTemperature())
-        recipeBrewTime.text = applicationContext.getString(R.string.chosen_recipe_brew_time, recipe.brewTimeToString())
-        recipeSteps.text = applicationContext.getString(R.string.chosen_recipe_steps, recipe.getStepsAsString())
+        chosen_recipe_brew_button.setOnClickListener {
+            val intent = Intent(this, BrewActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("RecipeKey", recipe.key)
+            bundle.putBoolean("IsDefault", true)
+            intent.putExtras(bundle)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -54,14 +49,14 @@ class RecipeDetailsActivity : AppCompatActivity() {
     }
 
     private fun initRecipe(intent: Intent) {
-        val id: Int? = intent.extras?.getInt("RecipeId")
+        val key: String? = intent.extras?.getString("RecipeKey")
         val isDefault: Boolean? = intent.extras?.getBoolean("IsDefault")
-        if (id != null)
+        if (key != null)
             recipe = if (isDefault != null)
-                CommonRecipesData.getById(id)
+                CommonRecipesData.getByKey(key)
             else
-                RecipesDAO.getById(id)
+                RecipesDAO.getByKey(key)
         else
-            CommonRecipesData.getById(0)
+            CommonRecipesData.getDefaultRecipe()
     }
 }

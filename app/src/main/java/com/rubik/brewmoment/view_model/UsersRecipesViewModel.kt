@@ -13,7 +13,7 @@ class UsersRecipesViewModel(application: Application) : AndroidViewModel(applica
     private fun getAllRecipes(): LiveData<List<Recipe>> {
 //        val recipes = repository.allRecipes
 //        val currentUserEmail: FirebaseUser? = FirebaseAuth.getInstance().currentUser ?: return arrayListOf()
-//        return recipes.filter { recipe -> recipe.authorEmail != currentUserEmail?.email }
+//        return recipes.filtering { recipe -> recipe.authorEmail != currentUserEmail?.email }
         val data = MutableLiveData<List<Recipe>>()
         data.value = RecipesDAO.getAll()
         return data

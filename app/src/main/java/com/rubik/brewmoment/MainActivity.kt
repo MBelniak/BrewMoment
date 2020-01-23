@@ -1,5 +1,6 @@
 package com.rubik.brewmoment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_results, R.id.nav_my_recipes, R.id.nav_common_recipes,
-                R.id.nav_users_recipes, R.id.nav_log_in, R.id.nav_my_account, R.id.nav_log_out
+                R.id.nav_users_recipes, R.id.nav_create_recipe, R.id.nav_log_in, R.id.nav_my_account, R.id.nav_log_out
             ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -39,5 +40,12 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        val homeIntent = Intent(Intent.ACTION_MAIN)
+        homeIntent.addCategory( Intent.CATEGORY_HOME )
+        homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(homeIntent)
     }
 }

@@ -4,10 +4,20 @@ import com.rubik.brewmoment.model.EqTypeEnum
 import com.rubik.brewmoment.model.GrindLevelEnum
 import com.rubik.brewmoment.model.step.Step
 
-class Recipe(val title: String, val author: String, val authorEmail: String,
-             val description: String, val equipment: EqTypeEnum, val brewTimeMinutes: Int,
-             val brewTimeSeconds: Int, val grindLevel: GrindLevelEnum, val isDefault: Boolean,
-             val steps: Array<Step>, val temperature: Int)
+class Recipe(
+    val title: String,
+    val author: String,
+    val authorEmail: String,
+    val description: String,
+    val equipment: EqTypeEnum,
+    val brewTimeMinutes: Int,
+    val brewTimeSeconds: Int,
+    val grindLevel: GrindLevelEnum,
+    val isDefault: Boolean,
+    val steps: Array<Step>,
+    val temperature: Int,
+    val doze: Int
+)
 {
     fun getTemperature(): String {
         return "${temperature}°C"
