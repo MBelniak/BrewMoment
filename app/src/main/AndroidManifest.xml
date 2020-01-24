@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.results.BrewResultActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".ui.recipes.CreateRecipeActivity"></activity>
+        <activity
+            android:name=".ui.results.BrewResultActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.recipes.AllRecipesListActivity" />
         <activity android:name=".ui.recipes.chosen_recipe.RecipeDetailsActivity" />
         <activity
@@ -30,7 +32,7 @@
         </activity>
         <activity
             android:name=".ui.brew.BrewActivity"
-            android:label="@string/brew_activity"/>
+            android:label="@string/brew_activity" />
     </application>
 
 </manifest>

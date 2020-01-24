@@ -8,7 +8,8 @@
     <LinearLayout
         android:id="@+id/main_linear_layout"
         android:layout_width="0dp"
-        android:layout_height="637dp"
+        android:layout_height="match_parent"
+        android:weightSum="5"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,14 +17,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="@string/start_brewing_text_view"
+            android:textSize="30sp"
+            android:gravity="bottom"
+            android:layout_marginStart="@dimen/start_end_margin"
+            android:layout_marginEnd="@dimen/start_end_margin"
+            android:layout_marginBottom="10dp"/>
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@drawable/home_buttons_border"
             android:clickable="false">
 
             <LinearLayout
-                android:id="@+id/eq_type_aeropress"
+                android:id="@+id/aeropress_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -60,12 +74,13 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@drawable/home_buttons_border"
             android:clickable="false">
 
             <LinearLayout
-                android:id="@+id/eq_type_drip"
+                android:id="@+id/drip_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -101,12 +116,13 @@
         </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@drawable/home_buttons_border"
             android:clickable="false">
 
             <LinearLayout
-                android:id="@+id/eq_type_french"
+                android:id="@+id/french_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -138,6 +154,60 @@
                     app:srcCompat="@mipmap/ic_french_icon_foreground" />
 
 
+            </LinearLayout>
+        </FrameLayout>
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/or_create_a_recipe_text_view"
+            android:textSize="30sp"
+            android:layout_weight="0.5"
+            android:gravity="bottom"
+            android:layout_marginStart="@dimen/start_end_margin"
+            android:layout_marginEnd="@dimen/start_end_margin"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/home_buttons_border"
+            android:layout_marginBottom="15dp"
+            android:clickable="false">
+
+            <LinearLayout
+                android:id="@+id/create_recipe_lin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+
+                    android:textColor="@color/eq_type_text"
+                    android:text="@string/create_recipe"
+                    android:textSize="30sp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonCreateRecipe"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:clickable="false"
+                    app:srcCompat="@drawable/ic_add_recipe_foreground" />
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

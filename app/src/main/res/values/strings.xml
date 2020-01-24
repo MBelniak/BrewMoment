@@ -81,4 +81,12 @@
     <string name="colon">:</string>
     <string name="grind_level_text_view">Grind level:</string>
     <string name="choose_grind_level">Choose grind level</string>
+    <string name="water_temperature_text_view">Water temperature: </string>
+    <string name="degree_celcius">°C</string>
+    <string name="doze_text_view">Doze:</string>
+    <string name="_100ml">g/100ml</string>
+    <string name="next_button">NEXT >></string>
+    <string name="start_brewing_text_view">Start brewing:</string>
+    <string name="or_create_a_recipe_text_view">or create a recipe:</string>
+    <string name="create_recipe">Create a recipe</string>
 </resources>
