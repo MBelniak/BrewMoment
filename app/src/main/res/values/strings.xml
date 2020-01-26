@@ -19,9 +19,10 @@
 
     <string name="aeropress_tile">Aeropress</string>
     <string name="eq_type_aeropress">Aeropress</string>
-    <string name="eq_type_drip">Drip / Chemex</string>
-    <string name="drip_tile">Drip / Chemex</string>
+    <string name="eq_type_drip">Drip</string>
+    <string name="drip_tile">Drip</string>
     <string name="eq_type_french">French press</string>
+    <string name="eq_type_chemex">Chemex</string>
     <string name="brew_activity">Brew coffee</string>
     <string name="my_recipes">My recipes</string>
     <string name="built_in_recipes">Built-in recipes</string>
@@ -47,7 +48,8 @@
     <string name="menu_common_recipes">Common recipes</string>
     <string name="menu_users_recipes">Users recipes</string>
     <string name="menu_aeropress_recipes">Aeropress recipes</string>
-    <string name="menu_drip_recipes">Drip/chemex recipes</string>
+    <string name="menu_drip_recipes">Drip recipes</string>
+    <string name="menu_chemex_recipes">Chemex recipes</string>
     <string name="menu_french_press_recipes">French press recipes</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="chosen_recipe_brew_temperature">Water temperature: %1$s</string>
@@ -62,7 +64,7 @@
     <string name="rate_coffee_text">How do you rate your coffee?</string>
     <string name="notes">Notes:</string>
     <string name="save_button">Save</string>
-    <string name="save_as_favourite">Save as favourite</string>
+    <string name="save_as_favourite">Add to favourites</string>
     <string name="coffee_used">Coffee used:</string>
     <string name="name_of_the_blend_hint">Name of the blend</string>
     <string name="describe_your_experience_hint">Describe your experience</string>
@@ -83,10 +85,58 @@
     <string name="choose_grind_level">Choose grind level</string>
     <string name="water_temperature_text_view">Water temperature: </string>
     <string name="degree_celcius">°C</string>
-    <string name="doze_text_view">Doze:</string>
+    <string name="doze_text_view">Dose:</string>
     <string name="_100ml">g/100ml</string>
-    <string name="next_button">NEXT >></string>
+    <string name="next_button"><![CDATA[NEXT >>]]></string>
     <string name="start_brewing_text_view">Start brewing:</string>
     <string name="or_create_a_recipe_text_view">or create a recipe:</string>
     <string name="create_recipe">Create a recipe</string>
+    <string name="save_and_share">SAVE AND SHARE</string>
+    <string name="save">SAVE</string>
+    <string name="back_button"><![CDATA[<< BACK]]></string>
+    <string name="step_type_text_view">Step type:</string>
+    <string name="pour_water_amount">Amount:</string>
+    <string name="_100">100</string>
+    <string name="ml">ml</string>
+    <string name="_for">For</string>
+    <string name="_30">30</string>
+    <string name="mcolon">m:</string>
+    <string name="s">s</string>
+    <string name="m">m</string>
+    <string name="your_tips">Your tips:</string>
+    <string name="give_user_a_hint">Give user a hint</string>
+    <string name="seconds">seconds</string>
+    <string name="wait_until">Wait until: </string>
+    <string name="your_step">Your step:</string>
+    <string name="describe_your_step">Describe your step</string>
+    <string name="your_results">Your results:</string>
+    <string name="result_coffee_used">Coffee used: %1$s</string>
+    <string name="result_total_brew_time">Total brew time: %1$s:%2$s</string>
+    <string name="result_notes">Notes: %1$s</string>
+    <string name="chemex_tile">Chemex</string>
+    <string name="results">Results</string>
+    <string name="menu_my_results">My brew results</string>
+    <string name="menu_users_results">User\'s brew results</string>
+    <string name="address_email_hint">address@email.com</string>
+    <string name="password_hint">Password</string>
+    <string name="log_in">SIGN IN</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_button">SIGN UP</string>
+    <string name="logged_in_as">Logged in as %1$s</string>
+    <string name="log_out_button">LOG OUT</string>
+    <string-array name="steps">
+        <item>Pour water over</item>
+        <item>Stir</item>
+        <item>Wait</item>
+        <item>Press</item>
+        <item>Custom step</item>
+    </string-array>
+    <string-array name="grind_levels">
+        <item></item>
+        <item>Stir</item>
+        <item>Wait</item>
+        <item>Press</item>
+        <item>Custom step</item>
+    </string-array>
+
 </resources>

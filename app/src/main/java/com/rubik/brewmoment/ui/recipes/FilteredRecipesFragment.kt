@@ -43,11 +43,11 @@ class FilteredRecipesFragment : Fragment() {
     }
 
     override fun onStart() {
-        recyclerView.adapter = RecipesRecycleViewAdapter(allRecipesViewModel.recipes, activity!!.applicationContext)
+        recyclerView.adapter = RecipesRecyclerViewAdapter(allRecipesViewModel.recipes, activity!!.applicationContext)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
 
-        (recyclerView.adapter as RecipesRecycleViewAdapter).setOnItemClickListener(object : OnItemClickListener {
+        (recyclerView.adapter as RecipesRecyclerViewAdapter).setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(recipe: Recipe) {
                 val intent = Intent(activity, RecipeDetailsActivity::class.java)
                 val bundle = Bundle()

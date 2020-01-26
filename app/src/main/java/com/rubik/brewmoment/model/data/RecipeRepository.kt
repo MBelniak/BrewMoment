@@ -7,7 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
-class RecipeRepository(application: Application) {
+class RecipeRepository {
 
     val databaseRef = BrewMomentDatabase.getReference("recipes")
     val allRecipes: MutableList<Recipe> = mutableListOf()

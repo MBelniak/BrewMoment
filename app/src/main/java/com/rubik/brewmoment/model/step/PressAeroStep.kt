@@ -1,5 +1,5 @@
 package com.rubik.brewmoment.model.step
 
-class PressAeroStep(override var authorsTips: String, timeInSeconds: Int) : Step() {
+class PressAeroStep(override var authorsTips: String, timeInSeconds: Int) : Step("press") {
     override var description: String = "Press the aeropress for $timeInSeconds seconds"
 }

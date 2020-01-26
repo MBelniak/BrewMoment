@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_buttons_border"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="5dip"
+            android:paddingRight="5dip"
+            android:paddingBottom="5dip"
+            android:weightSum="7">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/result_blend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:maxLines="3"
+                    android:paddingLeft="3dip"
+                    android:paddingRight="3dip"
+                    tools:text="Coffee blend fdsdjfnjsdfnjdghsdfbgkshgjhghbfdhgdfgdfgnhf"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/result_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingLeft="3dip"
+                    android:paddingRight="3dip"
+                    tools:text="2019.01.12"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/favourite_star"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="bottom"
+                    app:srcCompat="@drawable/ic_favourite_foreground" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/ic_drip_icon_foreground" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

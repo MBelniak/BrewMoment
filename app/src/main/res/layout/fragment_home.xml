@@ -9,7 +9,7 @@
         android:id="@+id/main_linear_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:weightSum="5"
+        android:weightSum="6"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,6 +110,48 @@
                     android:clickable="false"
                     android:contentDescription="@string/drip_tile"
                     app:srcCompat="@mipmap/ic_drip_icon_foreground" />
+
+
+            </LinearLayout>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/home_buttons_border"
+            android:clickable="false">
+
+            <LinearLayout
+                android:id="@+id/chemex_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+
+                    android:textColor="@color/eq_type_text"
+                    android:text="@string/eq_type_chemex"
+                    android:textSize="30sp" />
+                <ImageButton
+                    android:id="@+id/imageButtonChemex"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:clickable="false"
+                    android:contentDescription="@string/chemex_tile"
+                    app:srcCompat="@mipmap/ic_chemex_foreground" />
 
 
             </LinearLayout>

@@ -1,5 +1,6 @@
 package com.rubik.brewmoment.model.data
 
+import android.content.Context
 import com.rubik.brewmoment.model.EqTypeEnum
 import com.rubik.brewmoment.model.GrindLevelEnum
 import com.rubik.brewmoment.model.step.WaitStep
@@ -12,7 +13,7 @@ object RecipesDAO {
         return arrayListOf(Recipe(
             "aaa", "aaaa", "aaaa", "desc",
             EqTypeEnum.AEROPRESS, 3, 0, GrindLevelEnum.MEDIUM,
-            true, arrayOf(WaitStep("aaa", 1, 30)), 90, 0
+            arrayOf(WaitStep("aaa", 1, 30)), 90, 0, true
         ))
     }
 
@@ -21,16 +22,16 @@ object RecipesDAO {
         //TODO
         return arrayListOf(Recipe(
             "aaa", "aaaa", "aaaa", "desc",
-            EqTypeEnum.AEROPRESS, 3, 0, GrindLevelEnum.MEDIUM, true,
-            arrayOf(
+            EqTypeEnum.AEROPRESS, 3, 0, GrindLevelEnum.MEDIUM, arrayOf(
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30)
-            ), 90, 0
+            ),
+            90, 0, true
         ))
     }
 
-    fun getAllCommonRecipes(): List<Recipe>
+    fun getAllCommonRecipes(context: Context): List<Recipe>
     {
         return CommonRecipesData.getAll()
     }
@@ -40,12 +41,12 @@ object RecipesDAO {
         //TODO
         return arrayListOf(Recipe(
             "aaa", "aaaa", "aaaa", "desc",
-            EqTypeEnum.AEROPRESS, 3, 0, GrindLevelEnum.MEDIUM, true,
-            arrayOf(
+            EqTypeEnum.AEROPRESS, 3, 0, GrindLevelEnum.MEDIUM, arrayOf(
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30)
-            ), 90, 0
+            ),
+            90, 0, true
         ))
     }
 
@@ -54,12 +55,12 @@ object RecipesDAO {
         //TODO
         return arrayListOf(Recipe(
             "bbbbbb", "aaaa", "aaaa", "desc",
-            EqTypeEnum.DRIP, 3, 0, GrindLevelEnum.MEDIUM, true,
-            arrayOf(
+            EqTypeEnum.DRIP, 3, 0, GrindLevelEnum.MEDIUM, arrayOf(
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30)
-            ), 90, 0
+            ),
+            90, 0, true
         ))
     }
 
@@ -68,12 +69,24 @@ object RecipesDAO {
         //TODO
         return arrayListOf(Recipe(
             "aaa", "aaaa", "aaaa", "desc",
-            EqTypeEnum.AEROPRESS, 3, 0, GrindLevelEnum.MEDIUM, true,
-            arrayOf(
+            EqTypeEnum.AEROPRESS, 3, 0, GrindLevelEnum.MEDIUM, arrayOf(
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30)
-            ), 90, 0
+            ),
+            90, 0, true
+        ))
+    }
+
+    fun getAllChemexRecipes(): List<Recipe> {
+        return arrayListOf(Recipe(
+            "aaa", "aaaa", "aaaa", "desc",
+            EqTypeEnum.CHEMEX, 3, 0, GrindLevelEnum.MEDIUM, arrayOf(
+                WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30)
+            ),
+            90, 0, true
         ))
     }
 
@@ -82,12 +95,12 @@ object RecipesDAO {
         //TODO
         return arrayListOf(Recipe(
             "aaa", "aaaa", "aaaa", "desc",
-            EqTypeEnum.FRENCH_PRESS, 3, 0, GrindLevelEnum.MEDIUM, true,
-            arrayOf(
+            EqTypeEnum.FRENCH_PRESS, 3, 0, GrindLevelEnum.MEDIUM, arrayOf(
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30),
                 WaitStep("aaa", 1, 30)
-            ), 90, 0
+            ),
+            90, 0, true
         ))
     }
 
@@ -95,17 +108,8 @@ object RecipesDAO {
         return Recipe(
             "aaa", "aaaa", "aaaa", "desc",
             EqTypeEnum.AEROPRESS, 3, 0,
-            GrindLevelEnum.MEDIUM, true, arrayOf(WaitStep("aaa", 1, 30)), 90, 0
+            GrindLevelEnum.MEDIUM, arrayOf(WaitStep("aaa", 1, 30)), 90, 0, true
         )
     }
 
-    fun saveResult(
-        coffee: String,
-        notes: String,
-        saveAsFavourites: Boolean,
-        recipeKey: String,
-        default: Boolean
-    ) {
-
-    }
 }

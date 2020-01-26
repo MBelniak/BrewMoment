@@ -32,9 +32,9 @@ class CommonRecipesFragment : Fragment() {
         commonRecipesViewModel = ViewModelProviders.of(this).get(CommonRecipesViewModel::class.java)
         recyclerView = rootView.findViewById(R.id.recipe_recycle_view)
 
-        recyclerView.adapter = RecipesRecycleViewAdapter(commonRecipesViewModel.recipes, activity!!.applicationContext)
+        recyclerView.adapter = RecipesRecyclerViewAdapter(commonRecipesViewModel.recipes, activity!!.applicationContext)
 
-        (recyclerView.adapter as RecipesRecycleViewAdapter).setOnItemClickListener(object : OnItemClickListener {
+        (recyclerView.adapter as RecipesRecyclerViewAdapter).setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(recipe: Recipe) {
                 val intent = Intent(activity, RecipeDetailsActivity::class.java)
                 val bundle = Bundle()

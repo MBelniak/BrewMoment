@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,21 +22,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+    }
 
+    override fun onStart() {
+        super.onStart()
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
+
+        val navMenu = navView.menu
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_results, R.id.nav_my_recipes, R.id.nav_common_recipes,
-                R.id.nav_users_recipes, R.id.nav_log_in, R.id.nav_my_account, R.id.nav_log_out
+                R.id.nav_home, R.id.nav_my_results, R.id.nav_users_results, R.id.nav_my_recipes, R.id.nav_common_recipes,
+                R.id.nav_users_recipes, R.id.nav_log_in, R.id.nav_account
             ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
 
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser == null) {
+            navMenu.findItem(R.id.nav_log_in).isVisible = true
+            navMenu.findItem(R.id.nav_account).isVisible = false
+        } else {
+            navMenu.findItem(R.id.nav_account).isVisible = true
+            navMenu.findItem(R.id.nav_log_in).isVisible = false
+        }
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

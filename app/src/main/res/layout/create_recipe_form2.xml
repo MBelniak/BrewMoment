@@ -13,5 +13,81 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/steps_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+<!--            <include layout="@layout/recipe_step_entry" />-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/start_end_margin"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add_step_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/start_end_margin"
+                android:layout_marginEnd="@dimen/start_end_margin"
+                android:layout_marginBottom="@dimen/start_end_margin"
+                android:background="@drawable/ic_add_step_foreground"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="@dimen/start_end_margin"
+                android:layout_marginEnd="@dimen/start_end_margin"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/save_recipe_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/start_end_margin"
+            android:layout_marginEnd="@dimen/start_end_margin"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/save"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/save_and_share_recipe_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/start_end_margin"
+            android:layout_marginEnd="@dimen/start_end_margin"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/save_and_share"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/start_end_margin"
+            android:layout_marginEnd="@dimen/start_end_margin"
+            android:layout_marginBottom="@dimen/start_end_margin"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/back_button"
+            android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>

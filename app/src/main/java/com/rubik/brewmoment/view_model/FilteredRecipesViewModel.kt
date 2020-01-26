@@ -20,11 +20,12 @@ class FilteredRecipesViewModel(application: Application) : AndroidViewModel(appl
             Filtering.All -> RecipesDAO.getAll()
             Filtering.Aeropress -> RecipesDAO.getAllAeropressRecipes()
             Filtering.Drip -> RecipesDAO.getAllDripRecipes()
+            Filtering.Chemex -> RecipesDAO.getAllChemexRecipes()
             Filtering.FrenchPress -> RecipesDAO.getAllFrenchPressRecipes()
         }
     }
 }
 
 enum class Filtering {
-    All, Drip, Aeropress, FrenchPress
+    All, Drip, Aeropress, FrenchPress, Chemex
 }

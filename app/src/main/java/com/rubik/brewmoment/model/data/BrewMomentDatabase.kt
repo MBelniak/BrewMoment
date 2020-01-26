@@ -7,7 +7,6 @@ object BrewMomentDatabase {
 
     private var database = FirebaseDatabase.getInstance()
 
-
     fun getReference(entity: String): DatabaseReference {
         return database.getReference(entity)
     }

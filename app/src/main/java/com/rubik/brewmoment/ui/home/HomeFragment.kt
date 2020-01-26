@@ -12,7 +12,6 @@ import com.rubik.brewmoment.ui.recipes.CreateRecipeActivity
 import com.rubik.brewmoment.view_model.Filtering
 import kotlinx.android.synthetic.main.fragment_home.*
 
-
 class HomeFragment : Fragment() {
     private lateinit var rootView: View
 
@@ -23,13 +22,13 @@ class HomeFragment : Fragment() {
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
-
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         aeropress_linear_layout.setOnClickListener{startRecipesListActivity(Filtering.Aeropress)}
         drip_linear_layout.setOnClickListener{startRecipesListActivity(Filtering.Drip)}
+        chemex_linear_layout.setOnClickListener{startRecipesListActivity(Filtering.Chemex)}
         french_linear_layout.setOnClickListener{startRecipesListActivity(Filtering.FrenchPress)}
         create_recipe_lin_layout.setOnClickListener{startCreateRecipeActivity()}
     }
@@ -46,6 +45,4 @@ class HomeFragment : Fragment() {
         intent.putExtras(bundle)
         startActivity(intent)
     }
-
-
 }

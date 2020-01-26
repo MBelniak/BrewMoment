@@ -23,7 +23,7 @@
             android:layout_marginEnd="@dimen/start_end_margin"
             android:layout_marginBottom="8dp"
             android:text="@string/title_text_view"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/title_edit_text"
@@ -53,7 +53,7 @@
             android:layout_marginEnd="@dimen/start_end_margin"
             android:layout_marginBottom="8dp"
             android:text="@string/description_text_view"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/desc_edit_text"
@@ -90,7 +90,7 @@
                 android:layout_marginEnd="@dimen/start_end_margin"
                 android:layout_weight="1"
                 android:text="@string/equipment_text_view"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -128,13 +128,13 @@
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
                 android:text="@string/brew_time_text_view"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="start"
                 android:orientation="horizontal">
 
                 <EditText
@@ -153,8 +153,8 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="25sp" />
+                    android:text="@string/m"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/editText4"
@@ -167,6 +167,16 @@
                     android:textColorLink="@color/colorPrimary"
                     android:textCursorDrawable="@android:color/black"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColorHighlight="@color/colorPrimaryDark"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textCursorDrawable="@android:color/black"
+                    android:text="@string/s" />
             </LinearLayout>
 
         </LinearLayout>
@@ -188,13 +198,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/grind_level_text_view"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/start_end_margin"
                 android:layout_marginEnd="@dimen/start_end_margin"/>
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/grind_level_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -224,7 +234,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_marginStart="@dimen/start_end_margin"
                 android:layout_marginEnd="@dimen/start_end_margin"
                 android:layout_gravity="center_vertical"
@@ -232,19 +242,19 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="start"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/water_temperature_text_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="2"
+                    android:ems="3"
                     android:inputType="number"
-                    android:maxEms="2"
+                    android:maxEms="3"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
                     android:textCursorDrawable="@android:color/black"
@@ -256,7 +266,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/start_end_margin"
                     android:text="@string/degree_celcius"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
         <View
@@ -281,22 +291,24 @@
                 android:layout_marginEnd="@dimen/start_end_margin"
                 android:layout_weight="1"
                 android:text="@string/doze_text_view"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="start"
+                android:weightSum="2"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/doze_text_edit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:ems="2"
+                    android:ems="3"
                     android:inputType="number"
-                    android:maxEms="2"
+                    android:maxEms="3"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
                     android:textCursorDrawable="@android:color/black"
@@ -304,10 +316,12 @@
 
                 <TextView
                     android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/_100ml"
-                    android:textSize="25sp" />
+                    android:layout_marginEnd="@dimen/start_end_margin"
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -326,7 +340,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="@string/next_button"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
 
     </LinearLayout>

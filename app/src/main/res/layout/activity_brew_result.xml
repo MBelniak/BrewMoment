@@ -37,7 +37,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/brew_finished"
-                    android:textSize="40sp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/total_brew_time"
@@ -48,7 +48,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/total_brew_time"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -59,7 +59,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/coffee_used"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/blend_name"
@@ -83,7 +83,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/notes"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/notes_edit_text"
@@ -110,36 +110,44 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/save_as_favourite"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="bottom"
                 android:gravity="bottom"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/save_button"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/save_and_share_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/save_and_share"
+                    android:textSize="25sp" />
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="@string/save_button"
-        android:textSize="25sp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

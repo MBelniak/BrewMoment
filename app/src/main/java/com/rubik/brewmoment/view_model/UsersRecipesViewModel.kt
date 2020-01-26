@@ -7,7 +7,7 @@ import com.rubik.brewmoment.model.data.RecipeRepository
 import com.rubik.brewmoment.model.data.RecipesDAO
 
 class UsersRecipesViewModel(application: Application) : AndroidViewModel(application) {
-    private var repository: RecipeRepository = RecipeRepository(application)
+    private var repository: RecipeRepository = RecipeRepository()
     val recipes: LiveData<List<Recipe>> = getAllRecipes()
 
     private fun getAllRecipes(): LiveData<List<Recipe>> {

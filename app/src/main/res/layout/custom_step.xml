@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/your_step"
+        android:layout_marginStart="@dimen/start_end_margin"
+        android:layout_marginEnd="@dimen/start_end_margin"
+        android:layout_marginTop="@dimen/start_end_margin"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_end_margin"
+        android:layout_marginEnd="@dimen/start_end_margin"
+        android:layout_marginBottom="@dimen/start_end_margin"
+        android:ems="10"
+        android:hint="@string/describe_your_step"
+        android:inputType="text"
+        android:textSize="20sp" />
+</LinearLayout>

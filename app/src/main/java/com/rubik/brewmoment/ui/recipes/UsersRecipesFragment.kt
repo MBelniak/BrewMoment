@@ -34,12 +34,12 @@ class UsersRecipesFragment : Fragment() {
         linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         recyclerView = rootView.findViewById(R.id.recipe_recycle_view)
 
-        recyclerView.adapter = RecipesRecycleViewAdapter(
+        recyclerView.adapter = RecipesRecyclerViewAdapter(
             usersRecipesViewModel.recipes.value!!, activity!!.applicationContext)
         usersRecipesViewModel.recipes.observe(this, Observer {
-            (recyclerView.adapter as RecipesRecycleViewAdapter).notifyDataSetChanged()})
+            (recyclerView.adapter as RecipesRecyclerViewAdapter).notifyDataSetChanged()})
 
-        (recyclerView.adapter as RecipesRecycleViewAdapter).setOnItemClickListener(object : OnItemClickListener {
+        (recyclerView.adapter as RecipesRecyclerViewAdapter).setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(recipe: Recipe) {
                 val intent = Intent(activity, RecipeDetailsActivity::class.java)
                 val bundle = Bundle()

@@ -12,6 +12,18 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_my_results"
+        android:name="com.rubik.brewmoment.ui.results.MyBrewResultsFragment"
+        android:label="@string/menu_my_results"
+        tools:layout="@layout/fragment_results_list" />
+
+    <fragment
+        android:id="@+id/nav_users_results"
+        android:name="com.rubik.brewmoment.ui.results.UsersBrewResultsFragment"
+        android:label="@string/menu_users_results"
+        tools:layout="@layout/fragment_results_list" />
+
+    <fragment
         android:id="@+id/nav_my_recipes"
         android:name="com.rubik.brewmoment.ui.recipes.MyRecipesFragment"
         android:label="@string/menu_my_recipes"
@@ -30,26 +42,14 @@
         tools:layout="@layout/fragment_recipes_list" />
 
     <fragment
-        android:id="@+id/nav_results"
-        android:name="com.rubik.brewmoment.ui.results.ResultsFragment"
-        android:label="@string/menu_results"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_my_account"
-        android:name="com.rubik.brewmoment.ui.my_account.MyAccountFragment"
-        android:label="@string/menu_my_account"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
         android:id="@+id/nav_log_in"
         android:name="com.rubik.brewmoment.ui.login.LogInFragment"
         android:label="@string/menu_login"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_login" />
 
     <fragment
-        android:id="@+id/nav_log_out"
-        android:name="com.rubik.brewmoment.ui.logout.LogOutFragment"
+        android:id="@+id/nav_account"
+        android:name="com.rubik.brewmoment.ui.login.AccountFragment"
         android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_account" />
 </navigation>

@@ -13,10 +13,11 @@ class Recipe(
     val brewTimeMinutes: Int,
     val brewTimeSeconds: Int,
     val grindLevel: GrindLevelEnum,
-    val isDefault: Boolean,
     val steps: Array<Step>,
     val temperature: Int,
-    val doze: Int
+    val doze: Int,
+    val isDefault: Boolean = true,
+    var key: String = "0"
 )
 {
     fun getTemperature(): String {
@@ -33,5 +34,4 @@ class Recipe(
         return "aaaaa" //TODO
     }
 
-    var key: String = ""
 }
