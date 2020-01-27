@@ -48,7 +48,18 @@
                     android:paddingLeft="3dip"
                     android:paddingRight="3dip"
                     tools:text="2019.01.12"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/result_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dip"
+                    android:paddingRight="3dip"
+                    android:textSize="20sp"
+                    tools:text="My recipe"
+                    android:text="@string/author_text"
+                    />
 
                 <ImageView
                     android:id="@+id/favourite_star"
@@ -67,7 +78,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/image"
+                    android:id="@+id/eq_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@mipmap/ic_drip_icon_foreground" />

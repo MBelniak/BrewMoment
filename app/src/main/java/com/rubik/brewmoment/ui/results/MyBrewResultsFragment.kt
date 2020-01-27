@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.BrewResult
 import com.rubik.brewmoment.util.LoginUtil
-import com.rubik.brewmoment.view_model.MyBrewResultsViewModel
-import com.rubik.brewmoment.view_model.MyBrewResultsViewModelFactory
+import com.rubik.brewmoment.view_model.BrewResultsViewModel
 
 class MyBrewResultsFragment : Fragment() {
 
-    private lateinit var myBrewResultsViewModel: MyBrewResultsViewModel
+    private lateinit var brewResultsViewModel: BrewResultsViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var rootView: View
@@ -33,12 +32,10 @@ class MyBrewResultsFragment : Fragment() {
         linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         recyclerView = rootView.findViewById(R.id.results_recycle_view)
 
-        myBrewResultsViewModel = ViewModelProviders.of(this,
-            MyBrewResultsViewModelFactory(this.activity!!.application,
-                LoginUtil.getCurrentUserEmail())).get(MyBrewResultsViewModel::class.java)
+        brewResultsViewModel = ViewModelProviders.of(this).get(BrewResultsViewModel::class.java)
 
         recyclerView.adapter = BrewResultsRecyclerViewAdapter(
-            myBrewResultsViewModel.getResults(),activity!!.applicationContext)
+            brewResultsViewModel.getMyResults(LoginUtil.getCurrentUserEmail()) , activity!!.applicationContext)
 
         (recyclerView.adapter as BrewResultsRecyclerViewAdapter).setOnItemClickListener(object :
             OnResultItemClickListener {
@@ -53,8 +50,10 @@ class MyBrewResultsFragment : Fragment() {
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
 
-        myBrewResultsViewModel.results.observe(this, Observer {
-            (recyclerView.adapter as BrewResultsRecyclerViewAdapter).resultsDataset = myBrewResultsViewModel.getResults()
+        brewResultsViewModel.results.observe(this, Observer {
+            (recyclerView.adapter as BrewResultsRecyclerViewAdapter).resultsDataset =
+                brewResultsViewModel.getMyResults(LoginUtil.getCurrentUserEmail())
+            (recyclerView.adapter as BrewResultsRecyclerViewAdapter).showFavourites = true
             (recyclerView.adapter as BrewResultsRecyclerViewAdapter).notifyDataSetChanged()
             updateUI()
         })
@@ -76,7 +75,7 @@ class MyBrewResultsFragment : Fragment() {
         }
         else
         {
-            val results = myBrewResultsViewModel.getResults()
+            val results = brewResultsViewModel.getMyResults(LoginUtil.getCurrentUserEmail())
             if (results.isEmpty())
             {
                 recyclerView.visibility = View.GONE

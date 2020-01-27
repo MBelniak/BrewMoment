@@ -17,16 +17,12 @@ import com.rubik.brewmoment.MainActivity
 
 class LogInFragment : Fragment() {
 
-    private lateinit var logInViewModel: LogInViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        logInViewModel = ViewModelProviders.of(this).get(LogInViewModel::class.java)
-
-
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
@@ -41,21 +37,21 @@ class LogInFragment : Fragment() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(activity!!.applicationContext, "You have been signed in.",
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_LONG).show()
                         startActivity(Intent(activity, MainActivity::class.java))
                         activity?.finish()
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(activity!!.applicationContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_LONG
                         ).show()
                     }
                 }
         }
         sign_up_text_view.movementMethod = LinkMovementMethod.getInstance()
+        sign_up_text_view.isClickable = true
         sign_up_text_view.setOnClickListener {
             startActivity(Intent(activity, SignUpActivity::class.java))
-            activity?.finish()
         }
     }
 }

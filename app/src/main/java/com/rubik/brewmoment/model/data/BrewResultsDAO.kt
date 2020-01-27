@@ -5,11 +5,11 @@ import android.os.AsyncTask
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.rubik.brewmoment.model.EqTypeEnum
 
 object BrewResultsDAO {
     private val databaseRef = BrewMomentDatabase.getReference("results")
@@ -105,30 +105,32 @@ object BrewResultsDAO {
 //        //TODO
 //    }
 
-    fun getAllMyResults(email: String): LiveData<List<BrewResult>> {
-        return Transformations.map(allResults) { resultList ->
-            val filteredList = resultList.filter { result -> result.authorEmail == email }
-            filteredList
-        }
-    }
-
-    fun getAllUsersResults(): LiveData<List<BrewResult>> {
-        return Transformations.map(allResults) { resultList ->
-            val filteredList = resultList.filter { result -> result.isResultShared }
-            filteredList
-        }
-    }
-
     fun getByKey(key: String): BrewResult? {
-        for (result in allResults.value!!)
-            if (result.key == key)
-                return result
+        if (allResults.value != null)
+            for (result in allResults.value!!)
+                if (result.key == key)
+                    return result
         return null
     }
 
     fun getDefaultResult(): BrewResult {
-        return BrewResult(0, 0, "Ethiopia Aricha", "",
-            false, System.currentTimeMillis(), true, isResultShared = false, authorEmail = "")
+        return BrewResult(
+            0,
+            0,
+            equipment = EqTypeEnum.AEROPRESS,
+            coffeeBlend = "Ethiopia Aricha",
+            notes = "",
+            isFavourite = false,
+            date = System.currentTimeMillis(),
+            isRecipeDefault = true,
+            isResultShared = false,
+            authorEmail = "",
+            author = ""
+        )
+    }
+
+    fun getAllResults(): LiveData<List<BrewResult>> {
+        return allResults
     }
 
 }

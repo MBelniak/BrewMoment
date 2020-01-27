@@ -96,12 +96,12 @@ class CreateRecipeActivity : AppCompatActivity() {
             )
             RecipesDAO.insert(recipe)
             Toast.makeText(this, "Recipe will be saved",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_LONG).show()
         }
         else
         {
             Toast.makeText(this, "You have been logged out. Recipe not saved.",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_LONG).show()
         }
         startActivity(Intent(this, MainActivity::class.java))
         finish()

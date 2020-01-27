@@ -13,6 +13,9 @@ import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.CommonRecipesData
 import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.model.data.RecipesDAO
+import com.rubik.brewmoment.model.step.BoilWaterStep
+import com.rubik.brewmoment.model.step.GrindStep
+import com.rubik.brewmoment.model.step.Step
 import com.rubik.brewmoment.ui.recipes.RecipeDetailsActivity
 import com.rubik.brewmoment.ui.results.BrewResultActivity
 import com.rubik.brewmoment.util.PrefUtil
@@ -25,6 +28,7 @@ class BrewActivity : AppCompatActivity() {
     enum class State {
         Stopped, Paused, Running
     }
+    private var steps = mutableListOf<Step>()
     private var stopwatchState = State.Stopped
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +42,14 @@ class BrewActivity : AppCompatActivity() {
         PrefUtil.setTimerOffset(0, this)
         PrefUtil.setTimerState(State.Stopped, this)
         PrefUtil.setCurrentStep(0, this)
+        setListeners()
+        val grindBeansStep = GrindStep("", recipe.grindLevel, recipe.dose)
+        val boilWaterStep = BoilWaterStep("Also, " + grindBeansStep.description, recipe.temperature)
+        steps.add(boilWaterStep)
+        steps.addAll(recipe.steps)
+    }
+
+    private fun setListeners() {
         start_pause_button.setOnClickListener {
             when (stopwatchState) {
                 State.Stopped -> {
@@ -56,7 +68,7 @@ class BrewActivity : AppCompatActivity() {
         }
 
         next.setOnClickListener{
-            when (currentStep < recipe.steps.size - 1) {
+            when (currentStep < steps.size - 1) {
                 true -> nextStep()
                 false -> finishBrewing()
             }
@@ -74,7 +86,7 @@ class BrewActivity : AppCompatActivity() {
         if (key != null)
             if (isDefault == null) {
                 recipe = CommonRecipesData.getDefaultRecipe()
-                Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_LONG).show()
             }
             else if (isDefault)
             {
@@ -85,14 +97,14 @@ class BrewActivity : AppCompatActivity() {
                 val rec = RecipesDAO.getByKey(key)
                 if (rec == null) {
                     recipe = CommonRecipesData.getDefaultRecipe()
-                    Toast.makeText(this, "Recipe has been deleted in the meantime.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Recipe has been deleted in the meantime.", Toast.LENGTH_LONG).show()
                 }
                 else {
                     recipe = rec
                 }
             }
         else {
-            Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_LONG).show()
             recipe = CommonRecipesData.getDefaultRecipe()
         }
     }
@@ -117,6 +129,7 @@ class BrewActivity : AppCompatActivity() {
         bundle.putInt("Seconds", seconds%60)
         bundle.putString("RecipeKey", recipe.key)
         bundle.putBoolean("IsDefault", recipe.isDefault)
+        bundle.putInt("EqType", recipe.equipment.ordinal)
         intent.putExtras(bundle)
         startActivity(intent)
         pauseStopwatch()
@@ -124,11 +137,11 @@ class BrewActivity : AppCompatActivity() {
     }
 
     private fun updateInstructions() {
-        brew_instruction.text = recipe.steps[currentStep].description
-        brew_authors_tip.text = recipe.steps[currentStep].authorsTips
+        brew_instruction.text = steps[currentStep].description
+        brew_authors_tip.text = steps[currentStep].authorsTips
         back.text = getString(R.string.back)
         back.visibility = if (currentStep == 0) View.INVISIBLE else View.VISIBLE
-        next.text = if (currentStep == recipe.steps.size - 1) getString(R.string.finish) else getString(R.string.next)
+        next.text = if (currentStep == steps.size - 1) getString(R.string.finish) else getString(R.string.next)
     }
 
     private fun startStopwatch() {
@@ -204,6 +217,7 @@ class BrewActivity : AppCompatActivity() {
         val intent = Intent(this, RecipeDetailsActivity::class.java)
         val bundle = Bundle()
         bundle.putString("RecipeKey", recipe.key)
+        bundle.putBoolean("IsDefault", recipe.isDefault)
         intent.putExtras(bundle)
         startActivity(intent)
         finish()

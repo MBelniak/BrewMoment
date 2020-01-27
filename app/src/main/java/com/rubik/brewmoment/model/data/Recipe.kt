@@ -16,7 +16,7 @@ class Recipe(
     var brewTimeSeconds: Int = 0,
     var grindLevel: GrindLevelEnum = GrindLevelEnum.MEDIUM,
     var temperature: Float = 0f,
-    var doze: Float = 0f,
+    var dose: Float = 0f,
     var steps: List<Step> = listOf(),
     var isShared: Boolean = true,
     var isDefault: Boolean = false,

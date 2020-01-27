@@ -130,6 +130,10 @@
     <string name="username">Username</string>
     <string name="no_results_available">No results available</string>
     <string name="choose_equipment">Choose equipment</string>
+    <string name="recipe_used">Recipe: %1$s</string>
+    <string name="loading_data">Loading data...</string>
+    <string name="author_text">Author: %1$s</string>
+    <string name="result_author">Author: %1$s</string>
     <string-array name="steps">
         <item>Pour water over</item>
         <item>Stir</item>

@@ -73,16 +73,13 @@ object RecipesDAO {
     }
 
 
-    fun getAllUsersRecipes(): LiveData<List<Recipe>>
-    {
-        return allRecipes
-    }
-
     fun getByKey(key: String): Recipe? {
-        for (recipe in allRecipes.value!!)
-            if (recipe.key == key)
-                return recipe
+        if (allRecipes.value != null)
+            for (recipe in allRecipes.value!!)
+                if (recipe.key == key)
+                    return recipe
         return null
     }
+
 
 }

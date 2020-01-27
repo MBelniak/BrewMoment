@@ -2,6 +2,7 @@ package com.rubik.brewmoment.ui.recipes
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +16,13 @@ import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.Filtering
 import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.util.LoginUtil
-import com.rubik.brewmoment.view_model.MyRecipesViewModel
-import com.rubik.brewmoment.view_model.MyRecipesViewModelFactory
+import com.rubik.brewmoment.view_model.RecipesViewModel
 
 class MyRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var rootView: View
-    private lateinit var myRecipesViewModel: MyRecipesViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,13 +31,10 @@ class MyRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragment(
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_recipes_list, container, false)
         linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        myRecipesViewModel = ViewModelProviders.of(this,
-            MyRecipesViewModelFactory(this.activity!!.application,
-                LoginUtil.getCurrentUserEmail().toString()
-            )).get(MyRecipesViewModel::class.java)
+        recipesViewModel = ViewModelProviders.of(this).get(RecipesViewModel::class.java)
 
         recyclerView = rootView.findViewById(R.id.recipe_recycle_view)
-        recyclerView.adapter = RecipesRecyclerViewAdapter(myRecipesViewModel.getFilteredRecipes(filt),
+        recyclerView.adapter = RecipesRecyclerViewAdapter(recipesViewModel.getMyFilteredRecipes(filt, LoginUtil.getCurrentUserEmail()),
             activity!!.applicationContext)
         (recyclerView.adapter as RecipesRecyclerViewAdapter).setOnItemClickListener(object : OnItemClickListener {
                 override fun onItemClick(recipe: Recipe) {
@@ -52,8 +49,10 @@ class MyRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragment(
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
 
-        myRecipesViewModel.recipes.observe(this, Observer {
-            (recyclerView.adapter as RecipesRecyclerViewAdapter).recipesDataset = myRecipesViewModel.getFilteredRecipes(filt)
+        recipesViewModel.recipes.observe(this, Observer {
+            (recyclerView.adapter as RecipesRecyclerViewAdapter).recipesDataset =
+                recipesViewModel.getMyFilteredRecipes(filt, LoginUtil.getCurrentUserEmail())
+
             (recyclerView.adapter as RecipesRecyclerViewAdapter).notifyDataSetChanged()
             updateUI()
         })
@@ -75,7 +74,7 @@ class MyRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragment(
         }
         else
         {
-            val recipes = myRecipesViewModel.getFilteredRecipes(filt)
+            val recipes = recipesViewModel.getMyFilteredRecipes(filt, LoginUtil.getCurrentUserEmail())
             if (recipes.isEmpty()) {
                 recyclerView.visibility = View.GONE
                 rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE

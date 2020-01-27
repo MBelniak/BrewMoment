@@ -11,6 +11,7 @@ import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.model.data.RecipesDAO
 import com.rubik.brewmoment.ui.brew.BrewActivity
 import kotlinx.android.synthetic.main.activity_recipe_details.*
+import java.text.NumberFormat
 
 class RecipeDetailsActivity : AppCompatActivity() {
 
@@ -29,7 +30,8 @@ class RecipeDetailsActivity : AppCompatActivity() {
         chosen_recipe_eq.text = applicationContext.getString(R.string.chosen_recipe_eq, recipe.equipment.EqName)
         chosen_recipe_author.text = applicationContext.getString(R.string.chosen_recipe_author, recipe.author)
         chosen_recipe_grind_level.text = applicationContext.getString(R.string.chosen_recipe_grind_level, recipe.grindLevel.grindLevel)
-        chosen_recipe_brew_temperature.text = applicationContext.getString(R.string.chosen_recipe_brew_temperature, recipe.temperature.toString()+"°C")
+        chosen_recipe_brew_temperature.text = applicationContext.getString(R.string.chosen_recipe_brew_temperature,
+            NumberFormat.getInstance().format(recipe.temperature)+"°C")
         chosen_recipe_brew_time.text = applicationContext.getString(R.string.chosen_recipe_brew_time, recipe.brewTimeToString())
         chosen_recipe_steps.text = applicationContext.getString(R.string.chosen_recipe_steps, recipe.getStepsAsString())
 
@@ -55,7 +57,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         if (key != null)
             if (isDefault == null) {
                 recipe = CommonRecipesData.getDefaultRecipe()
-                Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_LONG).show()
             }
             else if (isDefault)
             {
@@ -65,7 +67,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
                 val rec = RecipesDAO.getByKey(key)
                 if (rec == null) {
                     recipe = CommonRecipesData.getDefaultRecipe()
-                    Toast.makeText(this, "Recipe has been deleted in the meantime.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Recipe has been deleted in the meantime.", Toast.LENGTH_LONG).show()
                 }
                 else {
                     recipe = rec
@@ -73,7 +75,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
             }
         else {
             recipe = CommonRecipesData.getDefaultRecipe()
-            Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_LONG).show()
         }
     }
 }

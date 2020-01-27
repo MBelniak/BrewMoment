@@ -9,7 +9,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
+import com.rubik.brewmoment.model.EqTypeEnum
 import com.rubik.brewmoment.model.data.BrewResult
+import com.rubik.brewmoment.model.data.RecipesDAO
 import kotlinx.android.synthetic.main.result_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -19,6 +21,7 @@ class BrewResultsRecyclerViewAdapter(var resultsDataset: List<BrewResult>, val c
     : RecyclerView.Adapter<BrewResultsRecyclerViewAdapter.ResultsViewHolder>() {
 
     private lateinit var listener: OnResultItemClickListener
+    var showFavourites: Boolean = true
 
     inner class ResultsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
@@ -32,11 +35,24 @@ class BrewResultsRecyclerViewAdapter(var resultsDataset: List<BrewResult>, val c
 
         private var resultBlend: TextView = itemView.result_blend
         private var resultDate: TextView = itemView.result_date
+        private var author: TextView = itemView.result_author
         private var isFavourite: ImageView = itemView.favourite_star
+        private var eqImage: ImageView = itemView.eq_image
         fun bind(brewResult: BrewResult) {
             resultBlend.text = brewResult.coffeeBlend
             resultDate.text = getDate(brewResult.date, "dd-MM-yyyy")
-            isFavourite.visibility = if (brewResult.isFavourite) View.VISIBLE else View.INVISIBLE
+            author.text = brewResult.author
+            eqImage.setImageResource(
+                when(brewResult.equipment) {
+                    EqTypeEnum.AEROPRESS -> R.mipmap.ic_aeropress_icon_foreground
+                    EqTypeEnum.DRIP -> R.mipmap.ic_drip_icon_foreground
+                    EqTypeEnum.CHEMEX -> R.mipmap.ic_chemex_foreground
+                    EqTypeEnum.FRENCH_PRESS -> R.mipmap.ic_chemex_foreground
+                }
+            )
+            if (showFavourites && brewResult.isFavourite)
+                isFavourite.visibility = View.VISIBLE
+            else isFavourite.visibility =  View.INVISIBLE
         }
 
         private fun getDate(milliSeconds: Long, dateFormat: String): String {

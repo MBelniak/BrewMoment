@@ -39,21 +39,20 @@ class SignUpActivity : AppCompatActivity() {
                         .setDisplayName(username).build()
                     user!!.updateProfile(profileUpdates)
                     Toast.makeText(this, "You have been registered and signed in.",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_LONG
                     ).show()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(this, "Authentication failed.",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this, MainActivity::class.java))
         finish()
         return true
     }
