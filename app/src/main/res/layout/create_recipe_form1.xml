@@ -35,9 +35,9 @@
             android:hint="@string/my_recipe_hint"
             android:textSize="20sp"
             android:inputType="text"
+            android:maxLength="80"
             android:textColorHighlight="@color/colorPrimaryDark"
-            android:textColorLink="@color/colorPrimary"
-            android:textCursorDrawable="@android:color/black"/>
+            android:textColorLink="@color/colorPrimary" />
 
         <View
             android:layout_width="match_parent"
@@ -63,11 +63,12 @@
             android:layout_marginEnd="@dimen/start_end_margin"
             android:layout_marginBottom="15dp"
             android:hint="@string/desc_text_hint"
+            android:maxLength="200"
+            android:maxLines="4"
             android:textSize="20sp"
             android:inputType="text"
             android:textColorHighlight="@color/colorPrimaryDark"
-            android:textColorLink="@color/colorPrimary"
-            android:textCursorDrawable="@android:color/black"/>
+            android:textColorLink="@color/colorPrimary" />
 
         <View
             android:layout_width="match_parent"
@@ -142,9 +143,9 @@
                     android:ems="2"
                     android:inputType="number"
                     android:maxEms="2"
+                    android:maxLength="2"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
-                    android:textCursorDrawable="@android:color/black"
                     android:textAlignment="textEnd"
                     android:textSize="20sp" />
 
@@ -162,9 +163,9 @@
                     android:ems="2"
                     android:inputType="number"
                     android:maxEms="2"
+                    android:maxLength="2"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
-                    android:textCursorDrawable="@android:color/black"
                     android:textAlignment="textEnd"
                     android:textSize="20sp" />
 
@@ -175,7 +176,6 @@
                     android:textSize="20sp"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
-                    android:textCursorDrawable="@android:color/black"
                     android:text="@string/s" />
             </LinearLayout>
 
@@ -255,14 +255,14 @@
                     android:ems="3"
                     android:inputType="numberDecimal"
                     android:maxEms="3"
+                    android:maxLength="3"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
-                    android:textCursorDrawable="@android:color/black"
                     android:textAlignment="textEnd"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/degree_celcius"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/start_end_margin"
@@ -309,10 +309,10 @@
                     android:layout_height="wrap_content"
                     android:ems="3"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:maxEms="3"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
-                    android:textCursorDrawable="@android:color/black"
                     android:textSize="20sp"
                     android:textAlignment="textEnd"/>
 
@@ -321,11 +321,67 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/_100ml"
+                    android:text="@string/g"
                     android:layout_marginEnd="@dimen/start_end_margin"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/total_water_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginStart="@dimen/start_end_margin"
+                    android:layout_marginEnd="@dimen/start_end_margin"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/total_water" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:weightSum="2"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/total_water_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="3"
+                        android:inputType="numberDecimal"
+                        android:maxEms="3"
+                        android:maxLength="3"
+                        android:textColorHighlight="@color/colorPrimaryDark"
+                        android:textColorLink="@color/colorPrimary"
+                        android:textAlignment="textEnd"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/start_end_margin"
+                        android:layout_weight="1"
+                        android:text="@string/g"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
 
         <Space
             android:layout_weight="1"

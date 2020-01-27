@@ -85,13 +85,13 @@
     <string name="water_temperature_text_view">*Water temperature: </string>
     <string name="degree_celcius">°C</string>
     <string name="doze_text_view">*Dose:</string>
-    <string name="_100ml">g/100ml</string>
+    <string name="g">g</string>
     <string name="next_button"><![CDATA[NEXT >>]]></string>
     <string name="start_brewing_text_view">Start brewing:</string>
     <string name="or_create_a_recipe_text_view">or create a recipe:</string>
     <string name="create_recipe">Create a recipe</string>
-    <string name="save_and_share">SAVE AND SHARE</string>
-    <string name="save">SAVE</string>
+    <string name="save_and_share">Save and share</string>
+    <string name="save">save</string>
     <string name="back_button"><![CDATA[<< BACK]]></string>
     <string name="step_type_text_view">Step type:</string>
     <string name="pour_water_amount">*Amount:</string>
@@ -134,7 +134,7 @@
     <string name="loading_data">Loading data...</string>
     <string name="author_text">Author: %1$s</string>
     <string name="result_author">Author: %1$s</string>
-    <string name="exit">EXIT</string>
+    <string name="exit">Exit</string>
     <string name="other">Other</string>
     <string name="about">About</string>
     <string name="aeropress_icon_made_by_ddara_from_www_flaticon_com">Aeropress icon made by dDara from www.flaticon.com</string>
@@ -143,6 +143,9 @@
     <string name="french_press_icon_made_by_freepik_from_www_flaticon_com">French press icon and app logo made by freepik from www.flaticon.com</string>
     <string name="created_by_micha_belniak">App created by Michał Belniak.</string>
     <string name="menu_about">About</string>
+    <string name="chosen_recipe_brew_dose">Dose: %1$s</string>
+    <string name="chosen_recipe_brew_total_water">Total water: %1$s</string>
+    <string name="total_water">*Total water:</string>
     <string-array name="steps">
         <item>Pour water over</item>
         <item>Stir</item>

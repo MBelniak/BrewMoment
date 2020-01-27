@@ -96,12 +96,25 @@ class CreateRecipeActivity : AppCompatActivity() {
             brew_time_seconds_edit_text.error = "This field is mandatory"
             result = false
         }
+        else if (brew_time_seconds_edit_text.text.toString().toInt() > 59) {
+            brew_time_seconds_edit_text.error = "Incorrect value"
+            result = false
+        }
         if (water_temperature_edit_text.text.isBlank()) {
             water_temperature_edit_text.error = "This field is mandatory"
             result = false
         }
+        else if (water_temperature_edit_text.text.toString().toFloat() > 100f)
+        {
+            water_temperature_edit_text.error = "Incorrect value"
+            result = false
+        }
         if (doze_edit_text.text.isBlank()) {
             doze_edit_text.error = "This field is mandatory"
+            result = false
+        }
+        if (total_water_edit_text.text.isBlank()) {
+            total_water_edit_text.error = "This field is mandatory"
             result = false
         }
         for (child in stepsLinearLayout.children)
@@ -129,6 +142,11 @@ class CreateRecipeActivity : AppCompatActivity() {
                     if (child.findViewById<EditText>(R.id.wait_seconds).text.isBlank())
                     {
                         child.findViewById<EditText>(R.id.wait_seconds).error = "This field is mandatory"
+                        result = false
+                    }
+                    else if (child.findViewById<EditText>(R.id.wait_seconds).text.toString().toInt() > 59)
+                    {
+                        child.findViewById<EditText>(R.id.wait_seconds).error = "Incorrect value"
                         result = false
                     }
                 }
@@ -166,8 +184,8 @@ class CreateRecipeActivity : AppCompatActivity() {
                 GrindLevelEnum.values()[grind_level_spinner.selectedItemPosition],
                 water_temperature_edit_text.text.toString().toFloat(),
                 doze_edit_text.text.toString().toFloat(),
-                getCreatedSteps(),
-                isShared = isShared, isDefault = false
+                totalWater = total_water_edit_text.text.toString().toFloat(),
+                steps = getCreatedSteps(), isShared = isShared, isDefault = false
             )
             RecipesDAO.insert(recipe)
             Toast.makeText(this, "Recipe will be saved",

@@ -27,12 +27,17 @@ class RecipeDetailsActivity : AppCompatActivity() {
         actionBar?.title = resources.getString(R.string.recipe_details_title)
 
         chosen_recipe_title.text = recipe.title
-        chosen_recipe_eq.text = applicationContext.getString(R.string.chosen_recipe_eq, recipe.equipment.EqName)
+        chosen_recipe_eq.text = resources.getString(R.string.chosen_recipe_eq, recipe.equipment.EqName)
         chosen_recipe_author.text = applicationContext.getString(R.string.chosen_recipe_author, recipe.author)
-        chosen_recipe_grind_level.text = applicationContext.getString(R.string.chosen_recipe_grind_level, recipe.grindLevel.grindLevel)
-        chosen_recipe_brew_temperature.text = applicationContext.getString(R.string.chosen_recipe_brew_temperature,
+        chosen_recipe_description.text = recipe.description
+        chosen_recipe_grind_level.text = resources.getString(R.string.chosen_recipe_grind_level, recipe.grindLevel.grindLevel)
+        chosen_recipe_brew_temperature.text = resources.getString(R.string.chosen_recipe_brew_temperature,
             NumberFormat.getInstance().format(recipe.temperature)+"°C")
-        chosen_recipe_brew_time.text = applicationContext.getString(R.string.chosen_recipe_brew_time, recipe.brewTimeToString())
+        chosen_recipe_brew_time.text = resources.getString(R.string.chosen_recipe_brew_time, recipe.brewTimeToString())
+        chosen_recipe_brew_dose.text = resources.getString(R.string.chosen_recipe_brew_dose,
+            NumberFormat.getInstance().format(recipe.dose) + "g")
+        chosen_recipe_brew_total_water.text = resources.getString(R.string.chosen_recipe_brew_total_water,
+            NumberFormat.getInstance().format(recipe.totalWater) + "ml")
         chosen_recipe_steps.text = applicationContext.getString(R.string.chosen_recipe_steps, recipe.getStepsAsString())
 
         start_brewing_button.setOnClickListener {

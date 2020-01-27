@@ -135,6 +135,7 @@
                     android:layout_marginBottom="5dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
+                    android:textAllCaps="false"
                     android:text="@string/save_button"
                     android:textSize="25sp" />
 
@@ -148,6 +149,7 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="@string/save_and_share"
+                    android:textAllCaps="false"
                     android:textSize="25sp" />
 
                 <Button
@@ -160,6 +162,7 @@
                     android:layout_marginBottom="10dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
+                    android:textAllCaps="false"
                     android:text="@string/exit"
                     android:textSize="25sp" />
             </LinearLayout>

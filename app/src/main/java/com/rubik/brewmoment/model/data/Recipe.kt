@@ -17,6 +17,7 @@ class Recipe(
     var grindLevel: GrindLevelEnum = GrindLevelEnum.MEDIUM,
     var temperature: Float = 0f,
     var dose: Float = 0f,
+    var totalWater: Float = 0f,
     var steps: List<Step> = listOf(),
     var isShared: Boolean = true,
     var isDefault: Boolean = false,
@@ -37,21 +38,5 @@ class Recipe(
             result.append("\n" + step.description)
         return result.toString()
     }
-
-//    fun getGrindLevel(): String {
-//        return grindLevel.name
-//    }
-//
-//    fun setGrindLevel(grindLevel: String) {
-//        this.grindLevel = GrindLevelEnum.valueOf(grindLevel)
-//    }
-//
-//    fun getEquipment(): String {
-//        return equipment.name
-//    }
-//
-//    fun setEquipment(equipment: String) {
-//        this.equipment = EqTypeEnum.valueOf(equipment)
-//    }
 
 }
