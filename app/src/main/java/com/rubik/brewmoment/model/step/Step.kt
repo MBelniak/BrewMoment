@@ -1,13 +1,8 @@
 package com.rubik.brewmoment.model.step
 
-import com.beust.klaxon.TypeFor
+open class Step(open var description: String = "",
+                open var authorsTips: String = "") {
 
-@TypeFor(field = "type", adapter = StepTypeAdapter::class)
-abstract class Step(val type: String) {
-    var recipeKey: Int = 0
-
-    abstract var description: String
-    abstract val authorsTips: String
 }
 
 

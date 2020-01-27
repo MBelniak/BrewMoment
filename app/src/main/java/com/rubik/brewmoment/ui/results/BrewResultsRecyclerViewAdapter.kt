@@ -1,4 +1,4 @@
-package com.rubik.brewmoment.ui.recipes
+package com.rubik.brewmoment.ui.results
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,9 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.BrewResult
 import kotlinx.android.synthetic.main.result_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-class ResultsRecyclerViewAdapter(private val resultsDataset: List<BrewResult>, val context: Context)
-    : RecyclerView.Adapter<ResultsRecyclerViewAdapter.ResultsViewHolder>() {
+
+class BrewResultsRecyclerViewAdapter(var resultsDataset: List<BrewResult>, val context: Context)
+    : RecyclerView.Adapter<BrewResultsRecyclerViewAdapter.ResultsViewHolder>() {
 
     private lateinit var listener: OnResultItemClickListener
 
@@ -32,8 +35,18 @@ class ResultsRecyclerViewAdapter(private val resultsDataset: List<BrewResult>, v
         private var isFavourite: ImageView = itemView.favourite_star
         fun bind(brewResult: BrewResult) {
             resultBlend.text = brewResult.coffeeBlend
-            resultDate.text = brewResult.date.toString()
+            resultDate.text = getDate(brewResult.date, "dd-MM-yyyy")
             isFavourite.visibility = if (brewResult.isFavourite) View.VISIBLE else View.INVISIBLE
+        }
+
+        private fun getDate(milliSeconds: Long, dateFormat: String): String {
+            // Create a DateFormatter object for displaying date in specified format.
+            val formatter = SimpleDateFormat(dateFormat)
+
+            // Create a calendar object that will convert the date and time value in milliseconds to date.
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = milliSeconds
+            return formatter.format(calendar.time)
         }
     }
 

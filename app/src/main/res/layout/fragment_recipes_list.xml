@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/choose_a_recipe_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -31,9 +31,23 @@
             android:id="@+id/recipe_recycle_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/recipe_item">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/recipe_item"/>
+        <TextView
+            android:id="@+id/no_data_available"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:text="@string/no_data_available" />
+        <TextView
+            android:id="@+id/not_logged_in"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:text="@string/not_logged_in" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

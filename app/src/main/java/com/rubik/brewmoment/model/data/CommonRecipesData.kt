@@ -1,8 +1,5 @@
 package com.rubik.brewmoment.model.data
 
-import android.content.Context
-import com.beust.klaxon.Klaxon
-import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.EqTypeEnum
 import com.rubik.brewmoment.model.GrindLevelEnum
 import com.rubik.brewmoment.model.step.WaitStep
@@ -22,36 +19,48 @@ object CommonRecipesData {
 //        return arr
 //    }
 
-    val recipeList = arrayListOf(Recipe("aaa", "aaaa", "aaaa", "desc",
+    private val recipeList = arrayListOf(Recipe(
+        "aaa", "aaaa", "aaaa", "desc",
         EqTypeEnum.AEROPRESS, 3, 0,
-        GrindLevelEnum.MEDIUM, arrayOf(WaitStep("aaa", 1, 30),
+        GrindLevelEnum.MEDIUM, 90f, 0f, listOf(WaitStep("aaa", 1, 30),
             WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30)), 90, 0, true, "0")
-    , Recipe("bbb", "aaaa", "aaaa", "desc",
-        EqTypeEnum.AEROPRESS, 3, 0,
-        GrindLevelEnum.MEDIUM, arrayOf(WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30)), 90, 0, true, "1")
-    , Recipe("ccc", "aaaa", "aaaa", "desc",
-        EqTypeEnum.AEROPRESS, 3, 0,
-        GrindLevelEnum.MEDIUM, arrayOf(WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30)), 90, 0, true, "2")
-    , Recipe("ddd", "aaaa", "aaaa", "desc",
-        EqTypeEnum.AEROPRESS, 3, 0,
-        GrindLevelEnum.MEDIUM, arrayOf(WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30)), 90, 0, true, "3")
-    , Recipe("eee", "aaaa", "aaaa", "desc",
-        EqTypeEnum.AEROPRESS, 3, 0,
-        GrindLevelEnum.MEDIUM, arrayOf(WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30)), 90, 0, true, "4")
-    , Recipe("fff", "aaaa", "aaaa", "desc",
-        EqTypeEnum.AEROPRESS, 3, 0,
-        GrindLevelEnum.MEDIUM, arrayOf(WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30),
-            WaitStep("aaa", 1, 30)), 90, 0, true, "5"))
+            WaitStep("aaa", 1, 30)), false, isDefault = true, key = "0"
+    )
+    , Recipe(
+            "bbb", "aaaa", "aaaa", "desc",
+            EqTypeEnum.AEROPRESS, 3, 0,
+            GrindLevelEnum.MEDIUM, 90f, 0f, listOf(WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30)), false, isDefault = true, key = "1"
+        )
+    , Recipe(
+            "ccc", "aaaa", "aaaa", "desc",
+            EqTypeEnum.AEROPRESS, 3, 0,
+            GrindLevelEnum.MEDIUM, 90f, 0f, listOf(WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30)), false, isDefault = true, key = "2"
+        )
+    , Recipe(
+            "ddd", "aaaa", "aaaa", "desc",
+            EqTypeEnum.AEROPRESS, 3, 0,
+            GrindLevelEnum.MEDIUM, 90f, 0f, listOf(WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30)), false, isDefault = true, key = "3"
+        )
+    , Recipe(
+            "eee", "aaaa", "aaaa", "desc",
+            EqTypeEnum.AEROPRESS, 3, 0,
+            GrindLevelEnum.MEDIUM, 90f, 0f, listOf(WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30)), false, isDefault = true, key = "4"
+        )
+    , Recipe(
+            "fff", "aaaa", "aaaa", "desc",
+            EqTypeEnum.AEROPRESS, 3, 0,
+            GrindLevelEnum.MEDIUM, 90f, 0f, listOf(WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30),
+                WaitStep("aaa", 1, 30)), isShared = false, isDefault = true, key = "5"
+        ))
 
     fun getAll(): List<Recipe>
     {
@@ -69,9 +78,9 @@ object CommonRecipesData {
         return Recipe(
             "Sample Recipe", "Noone", "", "Sample description",
             EqTypeEnum.AEROPRESS, 3, 0,
-            GrindLevelEnum.MEDIUM, arrayOf(WaitStep("", 1, 30),
+            GrindLevelEnum.MEDIUM, 90f, 0f, listOf(WaitStep("", 1, 30),
                 WaitStep("aaa", 1, 30),
-                WaitStep("aaa", 1, 30)), 90, 0, true
+                WaitStep("aaa", 1, 30)), isShared = false, isDefault = true
         )
     }
 }

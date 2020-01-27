@@ -2,13 +2,17 @@ package com.rubik.brewmoment.ui.results
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.rubik.brewmoment.MainActivity
 import com.rubik.brewmoment.R
+import com.rubik.brewmoment.model.data.BrewResult
 import com.rubik.brewmoment.model.data.BrewResultsDAO
-import com.rubik.brewmoment.model.data.RecipesDAO
+import com.rubik.brewmoment.util.LoginUtil
 import kotlinx.android.synthetic.main.activity_brew_result.*
+import java.util.*
 
 class BrewResultActivity : AppCompatActivity() {
 
@@ -52,7 +56,21 @@ class BrewResultActivity : AppCompatActivity() {
         val coffee = blend_name.text.toString()
         val notes = notes_edit_text.text.toString()
         val saveAsFavourites = save_as_favourite.isChecked
-        BrewResultsDAO.saveResult(coffee, notes, saveAsFavourites, recipeKey, isDefault, false)
+        val user = LoginUtil.getCurrentUser()
+        if (user != null)
+        {
+            val result = BrewResult(minutes, seconds, coffee, notes, saveAsFavourites,
+                System.currentTimeMillis(), isDefault, false, recipeKey = recipeKey, authorEmail = user.email!!
+            )
+            BrewResultsDAO.saveResult(result)
+            Toast.makeText(this, "Result will be saved",
+                Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
+            Toast.makeText(this, "You have been logged out during brewing. Result not saved.",
+                Toast.LENGTH_SHORT).show()
+        }
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
@@ -62,7 +80,11 @@ class BrewResultActivity : AppCompatActivity() {
         val coffee = blend_name.text.toString()
         val notes = notes_edit_text.text.toString()
         val saveAsFavourites = save_as_favourite.isChecked
-        BrewResultsDAO.saveResult(coffee, notes, saveAsFavourites, recipeKey, isDefault, true)
+        val result = BrewResult(
+            minutes, seconds, coffee, notes, saveAsFavourites,
+            System.currentTimeMillis(), isDefault, true, recipeKey = recipeKey, authorEmail = LoginUtil.getCurrentUserEmail()!!
+        )
+        BrewResultsDAO.saveResult(result)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

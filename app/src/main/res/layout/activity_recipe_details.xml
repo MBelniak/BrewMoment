@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recipes.chosen_recipe.RecipeDetailsActivity">
+    tools:context=".ui.recipes.RecipeDetailsActivity">
 
     <LinearLayout
         android:id="@+id/topLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginStart="@dimen/start_end_margin"
+        android:layout_marginEnd="@dimen/start_end_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,8 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:paddingLeft="3dip"
-            android:paddingRight="3dip"
             android:paddingBottom="10dip"
             android:text="@string/chosen_recipe_title"
             android:textSize="35sp"/>
@@ -30,8 +30,6 @@
             android:id="@+id/chosen_recipe_eq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dip"
-            android:paddingRight="3dip"
             android:paddingBottom="5dip"
             android:text="@string/chosen_recipe_eq"
             android:textSize="25sp" />
@@ -40,9 +38,7 @@
             android:id="@+id/chosen_recipe_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dip"
             android:paddingTop="5dip"
-            android:paddingRight="3dip"
             android:paddingBottom="5dip"
             android:text="nflkjsdfjlksgjldfn"
             android:textSize="20sp" />
@@ -51,9 +47,7 @@
             android:id="@+id/chosen_recipe_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dip"
             android:paddingTop="5dip"
-            android:paddingRight="3dip"
             android:paddingBottom="5dip"
             android:text="@string/chosen_recipe_author"
             android:textSize="20sp" />
@@ -62,9 +56,7 @@
             android:id="@+id/chosen_recipe_grind_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dip"
             android:paddingTop="5dip"
-            android:paddingRight="3dip"
             android:paddingBottom="5dip"
             android:text="@string/chosen_recipe_grind_level"
             android:textSize="20sp" />
@@ -73,9 +65,7 @@
             android:id="@+id/chosen_recipe_brew_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dip"
             android:paddingTop="5dip"
-            android:paddingRight="3dip"
             android:paddingBottom="5dip"
             android:text="@string/chosen_recipe_brew_time"
             android:textSize="20sp" />
@@ -84,9 +74,7 @@
             android:id="@+id/chosen_recipe_brew_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dip"
             android:paddingTop="5dip"
-            android:paddingRight="3dip"
             android:paddingBottom="5dip"
             android:text="@string/chosen_recipe_brew_temperature"
             android:textSize="20sp" />
@@ -97,11 +85,12 @@
         android:id="@+id/chosen_recipe_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="3dip"
         android:paddingTop="15dip"
-        android:paddingRight="3dip"
         android:text="@string/chosen_recipe_steps"
+        android:layout_marginStart="@dimen/start_end_margin"
+        android:layout_marginEnd="@dimen/start_end_margin"
         android:textSize="20sp"
+        android:lineSpacingExtra="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topLinearLayout" />

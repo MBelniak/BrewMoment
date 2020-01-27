@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -12,7 +13,7 @@ import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.CommonRecipesData
 import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.model.data.RecipesDAO
-import com.rubik.brewmoment.ui.recipes.chosen_recipe.RecipeDetailsActivity
+import com.rubik.brewmoment.ui.recipes.RecipeDetailsActivity
 import com.rubik.brewmoment.ui.results.BrewResultActivity
 import com.rubik.brewmoment.util.PrefUtil
 import kotlinx.android.synthetic.main.activity_brew.*
@@ -71,12 +72,29 @@ class BrewActivity : AppCompatActivity() {
         val key: String? = intent.extras?.getString("RecipeKey")
         val isDefault: Boolean? = intent.extras?.getBoolean("IsDefault")
         if (key != null)
-            recipe = if (isDefault != null)
-                CommonRecipesData.getByKey(key)
+            if (isDefault == null) {
+                recipe = CommonRecipesData.getDefaultRecipe()
+                Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+            }
+            else if (isDefault)
+            {
+                recipe = CommonRecipesData.getByKey(key)
+            }
             else
-                RecipesDAO.getByKey(key)
-        else
-            CommonRecipesData.getDefaultRecipe()
+            {
+                val rec = RecipesDAO.getByKey(key)
+                if (rec == null) {
+                    recipe = CommonRecipesData.getDefaultRecipe()
+                    Toast.makeText(this, "Recipe has been deleted in the meantime.", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    recipe = rec
+                }
+            }
+        else {
+            Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+            recipe = CommonRecipesData.getDefaultRecipe()
+        }
     }
 
     private fun nextStep() {
@@ -92,13 +110,16 @@ class BrewActivity : AppCompatActivity() {
     private fun finishBrewing() {
         val intent = Intent(this, BrewResultActivity::class.java)
         val bundle = Bundle()
-        val seconds: Int = ((SystemClock.elapsedRealtime() - stopwatch_chronometer.base) / 1000).toInt()
+        if (stopwatchState == State.Running)
+            pauseStopwatch()
+        val seconds = (pauseOffset / 1000).toInt()
         bundle.putInt("Minutes", seconds/60)
         bundle.putInt("Seconds", seconds%60)
         bundle.putString("RecipeKey", recipe.key)
         bundle.putBoolean("IsDefault", recipe.isDefault)
         intent.putExtras(bundle)
         startActivity(intent)
+        pauseStopwatch()
         finish()
     }
 
@@ -126,6 +147,7 @@ class BrewActivity : AppCompatActivity() {
 
     private fun resetStopwatch() {
         stopwatchState = State.Stopped
+        stopwatch_chronometer.stop()
         stopwatch_chronometer.base = SystemClock.elapsedRealtime()
         start_pause_button.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_play_arrow))
         pauseOffset = 0

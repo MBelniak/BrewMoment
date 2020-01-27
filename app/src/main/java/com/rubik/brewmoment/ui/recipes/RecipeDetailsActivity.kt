@@ -1,9 +1,10 @@
-package com.rubik.brewmoment.ui.recipes.chosen_recipe
+package com.rubik.brewmoment.ui.recipes
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.CommonRecipesData
 import com.rubik.brewmoment.model.data.Recipe
@@ -28,7 +29,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         chosen_recipe_eq.text = applicationContext.getString(R.string.chosen_recipe_eq, recipe.equipment.EqName)
         chosen_recipe_author.text = applicationContext.getString(R.string.chosen_recipe_author, recipe.author)
         chosen_recipe_grind_level.text = applicationContext.getString(R.string.chosen_recipe_grind_level, recipe.grindLevel.grindLevel)
-        chosen_recipe_brew_temperature.text = applicationContext.getString(R.string.chosen_recipe_brew_temperature, recipe.getTemperature())
+        chosen_recipe_brew_temperature.text = applicationContext.getString(R.string.chosen_recipe_brew_temperature, recipe.temperature.toString()+"°C")
         chosen_recipe_brew_time.text = applicationContext.getString(R.string.chosen_recipe_brew_time, recipe.brewTimeToString())
         chosen_recipe_steps.text = applicationContext.getString(R.string.chosen_recipe_steps, recipe.getStepsAsString())
 
@@ -36,7 +37,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
             val intent = Intent(this, BrewActivity::class.java)
             val bundle = Bundle()
             bundle.putString("RecipeKey", recipe.key)
-            bundle.putBoolean("IsDefault", true)
+            bundle.putBoolean("IsDefault", recipe.isDefault)
             intent.putExtras(bundle)
             startActivity(intent)
             finish()
@@ -52,11 +53,27 @@ class RecipeDetailsActivity : AppCompatActivity() {
         val key: String? = intent.extras?.getString("RecipeKey")
         val isDefault: Boolean? = intent.extras?.getBoolean("IsDefault")
         if (key != null)
-            recipe = if (isDefault != null)
-                CommonRecipesData.getByKey(key)
-            else
-                RecipesDAO.getByKey(key)
-        else
-            CommonRecipesData.getDefaultRecipe()
+            if (isDefault == null) {
+                recipe = CommonRecipesData.getDefaultRecipe()
+                Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+            }
+            else if (isDefault)
+            {
+                recipe = CommonRecipesData.getByKey(key)
+            }
+            else {
+                val rec = RecipesDAO.getByKey(key)
+                if (rec == null) {
+                    recipe = CommonRecipesData.getDefaultRecipe()
+                    Toast.makeText(this, "Recipe has been deleted in the meantime.", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    recipe = rec
+                }
+            }
+        else {
+            recipe = CommonRecipesData.getDefaultRecipe()
+            Toast.makeText(this, "Cannot find recipe, using default one", Toast.LENGTH_SHORT).show()
+        }
     }
 }

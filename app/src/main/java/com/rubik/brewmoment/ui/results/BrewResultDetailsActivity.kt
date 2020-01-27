@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.rubik.brewmoment.R
@@ -12,7 +13,7 @@ import com.rubik.brewmoment.model.data.BrewResultsDAO
 import kotlinx.android.synthetic.main.activity_result_details.*
 import java.sql.Date
 
-class ResultDetailsActivity : AppCompatActivity() {
+class BrewResultDetailsActivity : AppCompatActivity() {
 
     private var actionBar: ActionBar? = null
     private lateinit var brewResult: BrewResult
@@ -31,13 +32,17 @@ class ResultDetailsActivity : AppCompatActivity() {
     }
 
     private fun initBrewResult(intent: Intent) {
-        val key = intent.extras?.getString("ResultKey") ?: ""
-        val isMine = intent.extras?.getBoolean("IsMyResult") ?: true
-        brewResult = if (key != "")
-            BrewResultsDAO.getById(key, isMine)
-        else
-            BrewResult(0, 0, "", "",
-                false, Date(SystemClock.elapsedRealtime()), true, isResultShared = false)
+        val key = intent.extras?.getString("ResultKey")
+        if (key != null) {
+            val rec = BrewResultsDAO.getByKey(key)
+            if (rec == null) {
+                brewResult = BrewResultsDAO.getDefaultResult()
+                Toast.makeText(this, "Recipe has been deleted in the meantime.", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                brewResult = rec
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

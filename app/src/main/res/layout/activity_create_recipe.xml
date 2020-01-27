@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ViewFlipper android:id="@+id/viewFlipper"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context=".ui.recipes.CreateRecipeActivity"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/create_recipe_form1" android:id="@+id/form1"/>
-    <include layout="@layout/create_recipe_form2" android:id="@+id/form2"/>
-
-</ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <include layout="@layout/create_recipe_form1" android:id="@+id/form1"/>
+        <include layout="@layout/create_recipe_form2" android:id="@+id/form2"/>
+    </ViewFlipper>
+    <TextView
+        android:id="@+id/not_logged_in_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="@string/not_logged_in"
+        />
+</LinearLayout>

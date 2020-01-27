@@ -1,11 +1,9 @@
 package com.rubik.brewmoment
 
-import android.app.Application
-import android.content.Intent
-import com.google.firebase.auth.FirebaseAuth
+import androidx.multidex.MultiDexApplication
 
 
-class ApplicationStart : Application() {
+class ApplicationStart : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 

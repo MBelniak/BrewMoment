@@ -33,8 +33,8 @@ class AccountFragment : Fragment()
         log_out_button.setOnClickListener{
             val mAuth = FirebaseAuth.getInstance()
             mAuth.signOut()
-            Toast.makeText(activity, "You have been logged out.", Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, MainActivity::class.java))
+            Toast.makeText(activity, "You have been logged out.", Toast.LENGTH_SHORT).show()
             activity?.finish()
         }
     }

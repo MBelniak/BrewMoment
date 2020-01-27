@@ -17,16 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/your_results"
-            android:textSize="35sp" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/results_recycle_view"
             android:layout_width="match_parent"
@@ -34,6 +24,23 @@
             tools:listitem="@layout/result_item">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/no_data_available"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:text="@string/no_results_available" />
+        <TextView
+            android:id="@+id/not_logged_in"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:text="@string/not_logged_in" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/custom_step_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/start_end_margin"

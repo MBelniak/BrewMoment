@@ -11,7 +11,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.rubik.brewmoment.util.LoginUtil
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
     }
 
     override fun onStart() {
@@ -41,14 +43,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val currentUser = firebaseAuth.currentUser
-        if (currentUser == null) {
-            navMenu.findItem(R.id.nav_log_in).isVisible = true
-            navMenu.findItem(R.id.nav_account).isVisible = false
-        } else {
-            navMenu.findItem(R.id.nav_account).isVisible = true
+
+        if (LoginUtil.isUserLoggedIn()) {
             navMenu.findItem(R.id.nav_log_in).isVisible = false
+            navMenu.findItem(R.id.nav_account).isVisible = true
+        } else {
+            navMenu.findItem(R.id.nav_account).isVisible = false
+            navMenu.findItem(R.id.nav_log_in).isVisible = true
         }
     }
 

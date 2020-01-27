@@ -56,7 +56,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/desc_edit_text"
+            android:id="@+id/description_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/start_end_margin"
@@ -92,19 +92,17 @@
                 android:text="@string/equipment_text_view"
                 android:textSize="20sp" />
 
-            <FrameLayout
+            <Spinner
+                android:id="@+id/eq_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/home_buttons_border"
-                    app:srcCompat="@mipmap/ic_aeropress_icon_foreground" />
-            </FrameLayout>
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/start_end_margin"
+                android:layout_marginEnd="@dimen/start_end_margin"
+                android:drawSelectorOnTop="true"
+                android:spinnerMode="dialog"
+                android:prompt="@string/choose_equipment"/>
 
         </LinearLayout>
         <View
@@ -138,7 +136,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editText5"
+                    android:id="@+id/brew_time_minute_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="2"
@@ -147,6 +145,7 @@
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
                     android:textCursorDrawable="@android:color/black"
+                    android:textAlignment="textEnd"
                     android:textSize="20sp" />
 
                 <TextView
@@ -157,7 +156,7 @@
                     android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/editText4"
+                    android:id="@+id/brew_time_seconds_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="2"
@@ -166,6 +165,7 @@
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
                     android:textCursorDrawable="@android:color/black"
+                    android:textAlignment="textEnd"
                     android:textSize="20sp" />
 
                 <TextView
@@ -249,15 +249,16 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/water_temperature_text_edit"
+                    android:id="@+id/water_temperature_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="3"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxEms="3"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
                     android:textCursorDrawable="@android:color/black"
+                    android:textAlignment="textEnd"
                     android:textSize="20sp" />
 
                 <TextView
@@ -302,17 +303,18 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/doze_text_edit"
+                    android:id="@+id/doze_edit_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:ems="3"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxEms="3"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimary"
                     android:textCursorDrawable="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textAlignment="textEnd"/>
 
                 <TextView
                     android:id="@+id/textView7"

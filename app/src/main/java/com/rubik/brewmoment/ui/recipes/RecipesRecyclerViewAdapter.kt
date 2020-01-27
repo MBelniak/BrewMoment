@@ -13,7 +13,7 @@ import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.model.EqTypeEnum
 import kotlinx.android.synthetic.main.recipe_item.view.*
 
-class RecipesRecyclerViewAdapter(private val recipesDataset: List<Recipe>, val context: Context)
+class RecipesRecyclerViewAdapter(var recipesDataset: List<Recipe>, val context: Context)
     : RecyclerView.Adapter<RecipesRecyclerViewAdapter.RecipesViewHolder>() {
 
     private lateinit var listener: OnItemClickListener
@@ -44,6 +44,8 @@ class RecipesRecyclerViewAdapter(private val recipesDataset: List<Recipe>, val c
             }
         }
     }
+
+
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup,

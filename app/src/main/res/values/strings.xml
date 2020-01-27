@@ -25,7 +25,6 @@
     <string name="eq_type_chemex">Chemex</string>
     <string name="brew_activity">Brew coffee</string>
     <string name="my_recipes">My recipes</string>
-    <string name="built_in_recipes">Built-in recipes</string>
     <string name="users_recipes">Users recipes</string>
     <string name="brew_time">Total brewing time: %1$s</string>
     <string name="author">Author: %1$s</string>
@@ -42,7 +41,7 @@
     <string name="chosen_recipe_grind_level">Grind level: %1$s</string>
     <string name="chosen_recipe_brew_time">Brew time: %1$s</string>
     <string name="chosen_recipe_brew_button">START BREWING</string>
-    <string name="chosen_recipe_steps">Steps \n%1$s</string>
+    <string name="chosen_recipe_steps">Steps: %1$s</string>
     <string name="recipes_item_title">Recipes</string>
     <string name="menu_my_recipes">My recipes</string>
     <string name="menu_common_recipes">Common recipes</string>
@@ -109,14 +108,15 @@
     <string name="wait_until">Wait until: </string>
     <string name="your_step">Your step:</string>
     <string name="describe_your_step">Describe your step</string>
-    <string name="your_results">Your results:</string>
+    <string name="my_results">My results:</string>
+    <string name="users_results">Users\' results:</string>
     <string name="result_coffee_used">Coffee used: %1$s</string>
     <string name="result_total_brew_time">Total brew time: %1$s:%2$s</string>
     <string name="result_notes">Notes: %1$s</string>
     <string name="chemex_tile">Chemex</string>
     <string name="results">Results</string>
     <string name="menu_my_results">My brew results</string>
-    <string name="menu_users_results">User\'s brew results</string>
+    <string name="menu_users_results">Users\' brew results</string>
     <string name="address_email_hint">address@email.com</string>
     <string name="password_hint">Password</string>
     <string name="log_in">SIGN IN</string>
@@ -124,6 +124,12 @@
     <string name="sign_up_button">SIGN UP</string>
     <string name="logged_in_as">Logged in as %1$s</string>
     <string name="log_out_button">LOG OUT</string>
+    <string name="common_recipes">Common recipes</string>
+    <string name="no_data_available">No recipes available</string>
+    <string name="not_logged_in">You have to be signed in to display this content.</string>
+    <string name="username">Username</string>
+    <string name="no_results_available">No results available</string>
+    <string name="choose_equipment">Choose equipment</string>
     <string-array name="steps">
         <item>Pour water over</item>
         <item>Stir</item>

@@ -8,49 +8,56 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_home"
             android:title="@string/menu_home" />
+    </group>
 
 
     <item android:title="@string/results">
-        <item
-            android:id="@+id/nav_my_results"
-            android:icon="@drawable/ic_menu_results"
-            android:title="@string/menu_my_results" />
-        <item
-            android:id="@+id/nav_users_results"
-            android:icon="@drawable/ic_menu_results"
-            android:title="@string/menu_users_results" />
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_my_results"
+                    android:icon="@drawable/ic_menu_results"
+                    android:title="@string/menu_my_results" />
+                <item
+                    android:id="@+id/nav_users_results"
+                    android:icon="@drawable/ic_menu_results"
+                    android:title="@string/menu_users_results" />
+            </group>
+        </menu>
     </item>
 
 
     <item android:title="@string/recipes_item_title">
         <menu>
-            <item
-                android:id="@+id/nav_my_recipes"
-                android:title="@string/menu_my_recipes"
-                />
-            <item
-                android:id="@+id/nav_common_recipes"
-                android:title="@string/menu_common_recipes"
-                />
-            <item
-                android:id="@+id/nav_users_recipes"
-                android:title="@string/menu_users_recipes"
-                />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_my_recipes"
+                    android:title="@string/menu_my_recipes"
+                    />
+                <item
+                    android:id="@+id/nav_common_recipes"
+                    android:title="@string/menu_common_recipes"
+                    />
+                <item
+                    android:id="@+id/nav_users_recipes"
+                    android:title="@string/menu_users_recipes"
+                    />
+            </group>
         </menu>
     </item>
 
     <item android:title="@string/account">
         <menu>
-            <item
-                android:id="@+id/nav_account"
-                android:title="@string/menu_account"
-                android:visible="false"/>
-            <item
-                android:id="@+id/nav_log_in"
-                android:title="@string/menu_login"
-                />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_account"
+                    android:title="@string/menu_account"
+                    android:visible="false"/>
+                <item
+                    android:id="@+id/nav_log_in"
+                    android:title="@string/menu_login"
+                    />
+            </group>
         </menu>
     </item>
-    </group>
-
 </menu>

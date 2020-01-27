@@ -30,12 +30,13 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/wait_minutes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="2"
                 android:inputType="number"
                 android:maxEms="2"
+                android:textAlignment="textEnd"
                 android:textColorHighlight="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimary"
                 android:textCursorDrawable="@android:color/black"
@@ -49,12 +50,13 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/wait_seconds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="2"
                 android:inputType="number"
                 android:maxEms="2"
+                android:textAlignment="textEnd"
                 android:textColorHighlight="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimary"
                 android:textCursorDrawable="@android:color/black"
@@ -72,5 +74,6 @@
         </LinearLayout>
 
     </LinearLayout>
+    <include layout="@layout/your_tips"/>
 
 </LinearLayout>

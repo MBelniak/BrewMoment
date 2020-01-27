@@ -5,15 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.data.BrewResult
-import com.rubik.brewmoment.ui.recipes.OnResultItemClickListener
-import com.rubik.brewmoment.ui.recipes.ResultsRecyclerViewAdapter
+import com.rubik.brewmoment.util.LoginUtil
 import com.rubik.brewmoment.view_model.MyBrewResultsViewModel
+import com.rubik.brewmoment.view_model.MyBrewResultsViewModelFactory
 
 class MyBrewResultsFragment : Fragment() {
 
@@ -28,31 +30,65 @@ class MyBrewResultsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_results_list, container, false)
+        linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        recyclerView = rootView.findViewById(R.id.results_recycle_view)
+
+        myBrewResultsViewModel = ViewModelProviders.of(this,
+            MyBrewResultsViewModelFactory(this.activity!!.application,
+                LoginUtil.getCurrentUserEmail())).get(MyBrewResultsViewModel::class.java)
+
+        recyclerView.adapter = BrewResultsRecyclerViewAdapter(
+            myBrewResultsViewModel.getResults(),activity!!.applicationContext)
+
+        (recyclerView.adapter as BrewResultsRecyclerViewAdapter).setOnItemClickListener(object :
+            OnResultItemClickListener {
+            override fun onItemClick(brewResult: BrewResult) {
+                val intent = Intent(activity, BrewResultDetailsActivity::class.java)
+                val bundle = Bundle()
+                bundle.putString("ResultKey", brewResult.key)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.setHasFixedSize(true)
+
+        myBrewResultsViewModel.results.observe(this, Observer {
+            (recyclerView.adapter as BrewResultsRecyclerViewAdapter).resultsDataset = myBrewResultsViewModel.getResults()
+            (recyclerView.adapter as BrewResultsRecyclerViewAdapter).notifyDataSetChanged()
+            updateUI()
+        })
 
         return rootView
     }
 
     override fun onStart() {
         super.onStart()
-        myBrewResultsViewModel = ViewModelProviders.of(this).get(MyBrewResultsViewModel::class.java)
-        linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recyclerView = rootView.findViewById(R.id.results_recycle_view)
+        updateUI()
+    }
 
-        recyclerView.adapter = ResultsRecyclerViewAdapter(myBrewResultsViewModel.results.value!!, activity!!.applicationContext)
-
-        (recyclerView.adapter as ResultsRecyclerViewAdapter).setOnItemClickListener(object :
-            OnResultItemClickListener {
-            override fun onItemClick(brewResult: BrewResult) {
-                val intent = Intent(activity, ResultDetailsActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("ResultKey", brewResult.key)
-                bundle.putBoolean("IsMyResult", true)
-                intent.putExtras(bundle)
-                startActivity(intent)
+    private fun updateUI() {
+        if (!LoginUtil.isUserLoggedIn())
+        {
+            recyclerView.visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.VISIBLE
+        }
+        else
+        {
+            val results = myBrewResultsViewModel.getResults()
+            if (results.isEmpty())
+            {
+                recyclerView.visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE
+                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
             }
-        })
-
-        recyclerView.layoutManager = linearLayoutManager
-        recyclerView.setHasFixedSize(true)
+            else
+            {
+                recyclerView.visibility = View.VISIBLE
+                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
+            }
+        }
     }
 }

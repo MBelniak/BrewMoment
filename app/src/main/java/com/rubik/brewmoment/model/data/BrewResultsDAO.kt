@@ -1,26 +1,134 @@
 package com.rubik.brewmoment.model.data
 
-import android.os.SystemClock
-import java.sql.Date
+import android.content.ContentValues.TAG
+import android.os.AsyncTask
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 
 object BrewResultsDAO {
-    fun getById(key: String, isMine: Boolean): BrewResult {
-        return BrewResult(2, 50, "Kostaryka La Candelilla",
-            "Acidic", true, Date(SystemClock.currentThreadTimeMillis()),
-            isRecipeDefault = true,
-            isResultShared = false
-        )
+    private val databaseRef = BrewMomentDatabase.getReference("results")
+    val allResults: MutableLiveData<List<BrewResult>> = MutableLiveData()
+
+    private val connectedRef = BrewMomentDatabase.getReference(".info/connected")
+
+    init {
+        connectedRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val connected = snapshot.getValue(Boolean::class.java) ?: false
+                if (connected) {
+                    Log.d(TAG, "connected")
+                } else {
+                    Log.d(TAG, "not connected")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "Listener was cancelled")
+            }
+        })
+
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    allResults.postValue(dataSnapshot.children.map
+                        { it.getValue(BrewResult::class.java) } as List<BrewResult>?)
+                }
+            }
+        })
     }
 
-    fun saveResult(
-        coffee: String,
-        notes: String,
-        saveAsFavourites: Boolean,
-        recipeKey: String,
-        defaultRecipe: Boolean,
-        shared: Boolean
-    ) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun saveResult(result: BrewResult) {
+        InsertBrewResultAsyncTask(databaseRef).execute(result)
+    }
+
+
+    fun update(result: BrewResult) {
+        val updateResultAsyncTask = UpdateBrewResultAsyncTask(databaseRef)
+            .execute(result)
+    }
+    fun delete(result: BrewResult) {
+        val deleteResultAsyncTask = DeleteBrewResultAsyncTask(databaseRef)
+            .execute(result)
+    }
+    private class InsertBrewResultAsyncTask(val databaseRef: DatabaseReference) :
+        AsyncTask<BrewResult, Unit, Unit>() {
+
+        override fun doInBackground(vararg result: BrewResult) {
+            val key: String? = databaseRef.push().key
+            if (key != null) {
+                result[0].key = key
+                val res = databaseRef.child(key).setValue(result[0])
+                if (res.isCanceled) {
+                    println("aaaaaaaa")
+                }
+                if (res.isSuccessful)
+                {
+                    println("aaaaaaaa")
+                }
+                if (res.isComplete)
+                {
+                    println("aaaaaaaa")
+                }
+            }
+        }
+    }
+    private class UpdateBrewResultAsyncTask(val databaseRef: DatabaseReference) :
+        AsyncTask<BrewResult, Unit, Unit>() {
+
+        override fun doInBackground(vararg result: BrewResult) {
+            val key = result[0].key
+            databaseRef.child(key).setValue(result[0])
+        }
+    }
+    private class DeleteBrewResultAsyncTask(val databaseRef: DatabaseReference) :
+        AsyncTask<BrewResult, Unit, Unit>() {
+
+
+        override fun doInBackground(vararg result: BrewResult) {
+            val key = result[0].key
+            databaseRef.child(key).removeValue()
+        }
+
+    }
+
+//    fun getByKey(key: String): BrewResult {
+//        //TODO
+//    }
+
+    fun getAllMyResults(email: String): LiveData<List<BrewResult>> {
+        return Transformations.map(allResults) { resultList ->
+            val filteredList = resultList.filter { result -> result.authorEmail == email }
+            filteredList
+        }
+    }
+
+    fun getAllUsersResults(): LiveData<List<BrewResult>> {
+        return Transformations.map(allResults) { resultList ->
+            val filteredList = resultList.filter { result -> result.isResultShared }
+            filteredList
+        }
+    }
+
+    fun getByKey(key: String): BrewResult? {
+        for (result in allResults.value!!)
+            if (result.key == key)
+                return result
+        return null
+    }
+
+    fun getDefaultResult(): BrewResult {
+        return BrewResult(0, 0, "Ethiopia Aricha", "",
+            false, System.currentTimeMillis(), true, isResultShared = false, authorEmail = "")
     }
 
 }

@@ -2,20 +2,16 @@ package com.rubik.brewmoment.view_model
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.rubik.brewmoment.model.Filtering
 import com.rubik.brewmoment.model.data.Recipe
-import com.rubik.brewmoment.model.data.RecipeRepository
 import com.rubik.brewmoment.model.data.RecipesDAO
 
 class UsersRecipesViewModel(application: Application) : AndroidViewModel(application) {
-    private var repository: RecipeRepository = RecipeRepository()
-    val recipes: LiveData<List<Recipe>> = getAllRecipes()
+    var recipes: LiveData<List<Recipe>> = RecipesDAO.getAllUsersRecipes()
 
-    private fun getAllRecipes(): LiveData<List<Recipe>> {
-//        val recipes = repository.allRecipes
-//        val currentUserEmail: FirebaseUser? = FirebaseAuth.getInstance().currentUser ?: return arrayListOf()
-//        return recipes.filtering { recipe -> recipe.authorEmail != currentUserEmail?.email }
-        val data = MutableLiveData<List<Recipe>>()
-        data.value = RecipesDAO.getAll()
-        return data
+    fun getFilteredRecipes(filt: Filtering): List<Recipe> {
+        if (filt == Filtering.ALL)
+            return recipes.value ?: listOf()
+        return recipes.value?.filter { recipe ->  recipe.equipment.ordinal == filt.ordinal} ?: listOf()
     }
 }
