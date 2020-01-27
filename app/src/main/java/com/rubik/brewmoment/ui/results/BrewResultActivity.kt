@@ -2,6 +2,8 @@ package com.rubik.brewmoment.ui.results
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -29,13 +31,34 @@ class BrewResultActivity : AppCompatActivity() {
         actionBar?.title = resources.getString(R.string.result_title)
         initLateinits(intent)
         total_brew_time.text = getString(R.string.total_brew_time, getTime())
+    }
 
-        save_button.setOnClickListener {
-            saveResult()
+    override fun onStart() {
+        super.onStart()
+
+        if (LoginUtil.isUserLoggedIn()) {
+            logged_in_lin_layout.visibility = View.VISIBLE
+            save_and_share_button.visibility = View.VISIBLE
+            save_button.visibility = View.VISIBLE
+            save_button.setOnClickListener {
+                saveResult()
+            }
+
+            save_and_share_button.setOnClickListener {
+                saveAndShareResult()
+            }
         }
-
-        save_and_share_button.setOnClickListener{
-            saveAndShareResult()
+        else
+        {
+            save_and_share_button.visibility = View.GONE
+            save_button.visibility = View.GONE
+            logged_in_lin_layout.visibility = View.GONE
+            exit_button.visibility = View.VISIBLE
+            exit_button.setOnClickListener{
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 
@@ -54,8 +77,13 @@ class BrewResultActivity : AppCompatActivity() {
     }
 
     private fun saveResult() {
-        val coffee = blend_name.text.toString()
+        if (blend_name.text.isBlank())
+        {
+            blend_name.error = "This field is mandatory"
+            return
+        }
         val notes = notes_edit_text.text.toString()
+        val coffee = blend_name.error.toString()
         val saveAsFavourites = save_as_favourite.isChecked
         val user = LoginUtil.getCurrentUser()
         if (user != null)
@@ -123,21 +151,27 @@ class BrewResultActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        AlertDialog.Builder(this)
-            .setTitle("Warning")
-            .setMessage("Are you sure you want to exit to the main screen without saving?")
+        if (LoginUtil.isUserLoggedIn()) {
+            AlertDialog.Builder(this)
+                .setTitle("Warning")
+                .setMessage("Are you sure you want to exit to the main screen without saving?")
 
-            // Specifying a listener allows you to take an action before dismissing the dialog.
-            // The dialog is automatically dismissed when a dialog button is clicked.
-            .setPositiveButton(R.string.yes) { _, _ ->
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(R.string.yes) { _, _ ->
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
 
-            // A null listener allows the button to dismiss the dialog and take no further action.
-            .setNegativeButton(R.string.no, null)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .show()
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show()
+            return
+        }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

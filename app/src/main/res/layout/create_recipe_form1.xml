@@ -285,7 +285,7 @@
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/dose_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/start_end_margin"

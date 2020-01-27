@@ -27,7 +27,6 @@ import kotlinx.android.synthetic.main.recipe_step_entry.view.*
 class CreateRecipeActivity : AppCompatActivity() {
 
     private var actionBar: ActionBar? = null
-    private lateinit var viewFlipper: ViewFlipper
     private lateinit var stepsLinearLayout: LinearLayout
     private var eqChoice: Int = 0
     private var isAvailable: Boolean = true
@@ -37,20 +36,27 @@ class CreateRecipeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_recipe)
         actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        viewFlipper = findViewById(R.id.viewFlipper)
         next_button.setOnClickListener{
-            viewFlipper.showNext()
+            if (validateFields()) {
+                view_flipper.setInAnimation(this, R.anim.right_in)
+                view_flipper.setOutAnimation(this, R.anim.left_out)
+                view_flipper.showNext()
+            }
         }
         add_step_button.setOnClickListener{addRecipeStep()}
         stepsLinearLayout = (findViewById<ScrollView>(R.id.form2)).findViewById(R.id.steps_linear_layout)
         back_button.setOnClickListener{
-            viewFlipper.showPrevious()
+            view_flipper.setInAnimation(this, R.anim.left_in)
+            view_flipper.setOutAnimation(this, R.anim.right_out)
+            view_flipper.showPrevious()
         }
         save_recipe_button.setOnClickListener{
-            saveRecipe(false)
+            if (validateFields())
+                saveRecipe(false)
         }
         save_and_share_recipe_button.setOnClickListener{
-            saveRecipe(true)
+            if (validateFields())
+                saveRecipe(true)
         }
 
         val grindSpinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, GrindLevelEnum.stringArray())
@@ -65,15 +71,84 @@ class CreateRecipeActivity : AppCompatActivity() {
         if (!LoginUtil.isUserLoggedIn())
         {
             not_logged_in_text_view.visibility = View.VISIBLE
-            viewFlipper.visibility = View.GONE
+            view_flipper.visibility = View.GONE
             isAvailable = false
         }
         else
         {
             not_logged_in_text_view.visibility = View.GONE
-            viewFlipper.visibility = View.VISIBLE
+            view_flipper.visibility = View.VISIBLE
             isAvailable = true
         }
+    }
+
+    private fun validateFields(): Boolean {
+        var result = true
+        if (title_edit_text.text.isBlank()) {
+            title_edit_text.error = "This field is mandatory"
+            result = false
+        }
+        if (brew_time_minute_edit_text.text.isBlank()) {
+            brew_time_minute_edit_text.error = "This field is mandatory"
+            result = false
+        }
+        if (brew_time_seconds_edit_text.text.isBlank()) {
+            brew_time_seconds_edit_text.error = "This field is mandatory"
+            result = false
+        }
+        if (water_temperature_edit_text.text.isBlank()) {
+            water_temperature_edit_text.error = "This field is mandatory"
+            result = false
+        }
+        if (doze_edit_text.text.isBlank()) {
+            doze_edit_text.error = "This field is mandatory"
+            result = false
+        }
+        for (child in stepsLinearLayout.children)
+        {
+            when (child.spinner.selectedItemPosition) {
+                0 -> {  //Pour over
+                    if (child.findViewById<EditText>(R.id.pour_water_amount).text.isBlank())
+                    {
+                        child.findViewById<EditText>(R.id.pour_water_amount).error = "This field is mandatory"
+                        result = false
+                    }
+                    if (child.findViewById<EditText>(R.id.pour_water_time).text.isBlank())
+                    {
+                        child.findViewById<EditText>(R.id.pour_water_time).error = "This field is mandatory"
+                        result = false
+                    }
+                }
+                1 -> {} //Stir
+                2 -> {  // Wait
+                    if (child.findViewById<EditText>(R.id.wait_minutes).text.isBlank())
+                    {
+                        child.findViewById<EditText>(R.id.wait_minutes).error = "This field is mandatory"
+                        result = false
+                    }
+                    if (child.findViewById<EditText>(R.id.wait_seconds).text.isBlank())
+                    {
+                        child.findViewById<EditText>(R.id.wait_seconds).error = "This field is mandatory"
+                        result = false
+                    }
+                }
+                3 -> { // Press
+                    if (child.findViewById<EditText>(R.id.press_seconds).text.isBlank())
+                    {
+                        child.findViewById<EditText>(R.id.press_seconds).error = "This field is mandatory"
+                        result = false
+                    }
+                }
+                4 -> {
+                    if (child.findViewById<EditText>(R.id.custom_step_text).text.isBlank())
+                    {
+                        child.findViewById<EditText>(R.id.custom_step_text).error = "This field is mandatory"
+                        result = false
+                    }
+                }
+            }
+        }
+        return result
     }
 
     private fun saveRecipe(isShared: Boolean) {

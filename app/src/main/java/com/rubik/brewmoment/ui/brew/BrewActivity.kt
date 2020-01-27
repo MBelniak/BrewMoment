@@ -1,10 +1,13 @@
 package com.rubik.brewmoment.ui.brew
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -42,11 +45,19 @@ class BrewActivity : AppCompatActivity() {
         PrefUtil.setTimerOffset(0, this)
         PrefUtil.setTimerState(State.Stopped, this)
         PrefUtil.setCurrentStep(0, this)
-        setListeners()
         val grindBeansStep = GrindStep("", recipe.grindLevel, recipe.dose)
         val boilWaterStep = BoilWaterStep("Also, " + grindBeansStep.description, recipe.temperature)
         steps.add(boilWaterStep)
         steps.addAll(recipe.steps)
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        for (step in steps)
+        {
+            val instructionFragment = inflater.inflate(R.layout.fragment_instruction, null)
+            instructionFragment.findViewById<TextView>(R.id.brew_instruction).text = step.description
+            instructionFragment.findViewById<TextView>(R.id.brew_authors_tip).text = step.authorsTips
+            view_flipper.addView(instructionFragment)
+        }
+        setListeners()
     }
 
     private fun setListeners() {
@@ -69,14 +80,25 @@ class BrewActivity : AppCompatActivity() {
 
         next.setOnClickListener{
             when (currentStep < steps.size - 1) {
-                true -> nextStep()
+                true -> {
+                    view_flipper.setInAnimation(this, R.anim.right_in)
+                    view_flipper.setOutAnimation(this, R.anim.left_out)
+                    currentStep++
+                    view_flipper.showNext()
+                    updateButtons()
+                }
                 false -> finishBrewing()
             }
         }
 
         back.setOnClickListener{
-            if (back.isVisible)
-                previousStep()
+            if (back.isVisible) {
+                view_flipper.setInAnimation(this, R.anim.left_in)
+                view_flipper.setOutAnimation(this, R.anim.right_out)
+                currentStep--
+                view_flipper.showPrevious()
+                updateButtons()
+            }
         }
     }
 
@@ -109,15 +131,6 @@ class BrewActivity : AppCompatActivity() {
         }
     }
 
-    private fun nextStep() {
-        currentStep++
-        updateInstructions()
-    }
-
-    private fun previousStep() {
-        currentStep--
-        updateInstructions()
-    }
 
     private fun finishBrewing() {
         val intent = Intent(this, BrewResultActivity::class.java)
@@ -136,9 +149,7 @@ class BrewActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun updateInstructions() {
-        brew_instruction.text = steps[currentStep].description
-        brew_authors_tip.text = steps[currentStep].authorsTips
+    private fun updateButtons() {
         back.text = getString(R.string.back)
         back.visibility = if (currentStep == 0) View.INVISIBLE else View.VISIBLE
         next.text = if (currentStep == steps.size - 1) getString(R.string.finish) else getString(R.string.next)
@@ -169,7 +180,7 @@ class BrewActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         stopwatchResume()
-        updateInstructions()
+        updateButtons()
     }
 
     override fun onPause() {

@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/linearLayout3"
+                android:id="@+id/common_lin_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -49,6 +49,13 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/total_brew_time"
                     android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logged_in_lin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView7"
@@ -142,6 +149,19 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="@string/save_and_share"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/exit_button"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/exit"
                     android:textSize="25sp" />
             </LinearLayout>
 

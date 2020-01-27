@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ViewFlipper
-        android:id="@+id/viewFlipper"
+        android:id="@+id/view_flipper"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
         <include layout="@layout/create_recipe_form1" android:id="@+id/form1"/>
