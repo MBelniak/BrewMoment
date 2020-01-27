@@ -49,6 +49,8 @@ class UsersBrewResultsFragment : Fragment() {
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
 
+        initUI()
+
         brewResultsViewModel.results.observe(this, Observer {
             (recyclerView.adapter as BrewResultsRecyclerViewAdapter).resultsDataset =
                 brewResultsViewModel.getSharedResults(LoginUtil.getCurrentUserEmail())
@@ -59,31 +61,37 @@ class UsersBrewResultsFragment : Fragment() {
         return rootView
     }
 
-    override fun onStart() {
-        super.onStart()
-        updateUI()
-    }
-
-    private fun updateUI() {
+    private fun initUI() {
         if (!LoginUtil.isUserLoggedIn())
         {
             recyclerView.visibility = View.GONE
             rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
             rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.VISIBLE
+            rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
         }
         else
         {
-            val results = brewResultsViewModel.getSharedResults(LoginUtil.getCurrentUserEmail())
-            if (results.isEmpty())
-            {
-                recyclerView.visibility = View.GONE
-                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE
-                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
-            }
-            else
+            recyclerView.visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.loading_data).visibility = View.VISIBLE
+            rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
+        }
+    }
+
+    private fun updateUI() {
+        if (LoginUtil.isUserLoggedIn())
+        {
+            if ((recyclerView.adapter as BrewResultsRecyclerViewAdapter).resultsDataset.isNotEmpty())
             {
                 recyclerView.visibility = View.VISIBLE
                 rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
+            }
+            else {
+                recyclerView.visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE
+                rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
                 rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
             }
         }

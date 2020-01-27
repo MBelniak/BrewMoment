@@ -2,7 +2,6 @@ package com.rubik.brewmoment.ui.recipes
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +48,8 @@ class MyRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragment(
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
 
+        initUI()
+
         recipesViewModel.recipes.observe(this, Observer {
             (recyclerView.adapter as RecipesRecyclerViewAdapter).recipesDataset =
                 recipesViewModel.getMyFilteredRecipes(filt, LoginUtil.getCurrentUserEmail())
@@ -59,35 +60,42 @@ class MyRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragment(
         return rootView
     }
 
-    override fun onStart() {
-        super.onStart()
-        updateUI()
-    }
-
-    private fun updateUI() {
+    private fun initUI() {
         if (!LoginUtil.isUserLoggedIn())
         {
             recyclerView.visibility = View.GONE
             rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
             rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.VISIBLE
+            rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
             rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.GONE
         }
         else
         {
-            val recipes = recipesViewModel.getMyFilteredRecipes(filt, LoginUtil.getCurrentUserEmail())
-            if (recipes.isEmpty()) {
-                recyclerView.visibility = View.GONE
-                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE
-                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
-                rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.GONE
-            }
-            else
-            {
+            recyclerView.visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.loading_data).visibility = View.VISIBLE
+            rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.GONE
+        }
+    }
+
+
+    private fun updateUI() {
+        if (LoginUtil.isUserLoggedIn())
+        {
+            if ((recyclerView.adapter as RecipesRecyclerViewAdapter).recipesDataset.isNotEmpty()) {
                 recyclerView.visibility = View.VISIBLE
                 rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
                 rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
-                rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.VISIBLE
-
+                rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility =  View.VISIBLE
+            }
+            else {
+                recyclerView.visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE
+                rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.GONE
             }
         }
     }

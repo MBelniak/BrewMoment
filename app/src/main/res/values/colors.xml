@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#229988</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">@color/ic_logo_background</color>
+    <color name="colorPrimaryDark">#B32D18</color>
     <color name="colorAccent">#D81B60</color>
     <color name="eq_type_default">#DDDDDD</color>
     <color name="eq_type_click">#AAAAAA</color>

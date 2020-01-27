@@ -64,7 +64,7 @@
     <string name="notes">Notes:</string>
     <string name="save_button">Save</string>
     <string name="save_as_favourite">Add to favourites</string>
-    <string name="coffee_used">Coffee used*:</string>
+    <string name="coffee_used">*Coffee used:</string>
     <string name="name_of_the_blend_hint">Name of the blend</string>
     <string name="describe_your_experience_hint">Describe your experience</string>
     <string name="yes">Yes</string>
@@ -135,6 +135,14 @@
     <string name="author_text">Author: %1$s</string>
     <string name="result_author">Author: %1$s</string>
     <string name="exit">EXIT</string>
+    <string name="other">Other</string>
+    <string name="about">About</string>
+    <string name="aeropress_icon_made_by_ddara_from_www_flaticon_com">Aeropress icon made by dDara from www.flaticon.com</string>
+    <string name="drip_icon_made_by_photo3idea_studio_from_www_flaticon_com">Drip icon made by photo3idea-studio from www.flaticon.com</string>
+    <string name="chemex_icon_made_by_nhor_phai_from_www_flaticon_com">Chemex icon made by nhor-phai from www.flaticon.com</string>
+    <string name="french_press_icon_made_by_freepik_from_www_flaticon_com">French press icon and app logo made by freepik from www.flaticon.com</string>
+    <string name="created_by_micha_belniak">App created by Michał Belniak.</string>
+    <string name="menu_about">About</string>
     <string-array name="steps">
         <item>Pour water over</item>
         <item>Stir</item>

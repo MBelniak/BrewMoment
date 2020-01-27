@@ -107,7 +107,7 @@
         android:background="@drawable/start_brew_linear_border">
 
         <Button
-            android:id="@+id/chosen_recipe_brew_button"
+            android:id="@+id/start_brewing_button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dip"

@@ -41,11 +41,11 @@ class BrewResultActivity : AppCompatActivity() {
             save_and_share_button.visibility = View.VISIBLE
             save_button.visibility = View.VISIBLE
             save_button.setOnClickListener {
-                saveResult()
+                saveResult(false)
             }
 
             save_and_share_button.setOnClickListener {
-                saveAndShareResult()
+                saveResult(true)
             }
         }
         else
@@ -76,14 +76,14 @@ class BrewResultActivity : AppCompatActivity() {
         return "${minutes}:${seconds}"
     }
 
-    private fun saveResult() {
+    private fun saveResult(isShared: Boolean) {
         if (blend_name.text.isBlank())
         {
             blend_name.error = "This field is mandatory"
             return
         }
+        val coffee = blend_name.text.toString()
         val notes = notes_edit_text.text.toString()
-        val coffee = blend_name.error.toString()
         val saveAsFavourites = save_as_favourite.isChecked
         val user = LoginUtil.getCurrentUser()
         if (user != null)
@@ -97,7 +97,7 @@ class BrewResultActivity : AppCompatActivity() {
                 isFavourite = saveAsFavourites,
                 date = System.currentTimeMillis(),
                 isRecipeDefault = isDefault,
-                isResultShared = false,
+                isResultShared = isShared,
                 recipeKey = recipeKey,
                 authorEmail = user.email ?: "",
                 author = user.displayName ?: ""
@@ -109,41 +109,7 @@ class BrewResultActivity : AppCompatActivity() {
         else
         {
             Toast.makeText(this, "You have been logged out during brewing. Result not saved.",
-                Toast.LENGTH_SHORT).show()
-        }
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun saveAndShareResult() {
-        val coffee = blend_name.text.toString()
-        val notes = notes_edit_text.text.toString()
-        val saveAsFavourites = save_as_favourite.isChecked
-        val user = LoginUtil.getCurrentUser()
-        if (user != null) {
-            val result = BrewResult(
-                minutes,
-                seconds,
-                equipment = EqTypeEnum.AEROPRESS,
-                coffeeBlend = coffee,
-                notes = notes,
-                isFavourite = saveAsFavourites,
-                date = System.currentTimeMillis(),
-                isRecipeDefault = isDefault,
-                isResultShared = true,
-                recipeKey = recipeKey,
-                authorEmail = user.email ?: "",
-                author = user.displayName ?: ""
-            )
-            BrewResultsDAO.saveResult(result)
-            Toast.makeText(this, "Result will be saved",
-                Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
-            Toast.makeText(this, "You have been logged out during brewing. Result not saved.",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_LONG).show()
         }
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

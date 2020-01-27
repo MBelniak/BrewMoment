@@ -68,7 +68,7 @@
                     android:clickable="false"
 
                     android:contentDescription="@string/aeropress_tile"
-                    app:srcCompat="@mipmap/ic_aeropress_icon_foreground" />
+                    app:srcCompat="@mipmap/ic_aeropress_foreground" />
             </LinearLayout>
         </FrameLayout>
 

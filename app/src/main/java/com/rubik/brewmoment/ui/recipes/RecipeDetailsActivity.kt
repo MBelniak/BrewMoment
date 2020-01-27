@@ -35,7 +35,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         chosen_recipe_brew_time.text = applicationContext.getString(R.string.chosen_recipe_brew_time, recipe.brewTimeToString())
         chosen_recipe_steps.text = applicationContext.getString(R.string.chosen_recipe_steps, recipe.getStepsAsString())
 
-        chosen_recipe_brew_button.setOnClickListener {
+        start_brewing_button.setOnClickListener {
             val intent = Intent(this, BrewActivity::class.java)
             val bundle = Bundle()
             bundle.putString("RecipeKey", recipe.key)

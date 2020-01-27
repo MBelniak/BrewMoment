@@ -44,7 +44,7 @@ class BrewResultsRecyclerViewAdapter(var resultsDataset: List<BrewResult>, val c
             author.text = brewResult.author
             eqImage.setImageResource(
                 when(brewResult.equipment) {
-                    EqTypeEnum.AEROPRESS -> R.mipmap.ic_aeropress_icon_foreground
+                    EqTypeEnum.AEROPRESS -> R.mipmap.ic_aeropress_foreground
                     EqTypeEnum.DRIP -> R.mipmap.ic_drip_icon_foreground
                     EqTypeEnum.CHEMEX -> R.mipmap.ic_chemex_foreground
                     EqTypeEnum.FRENCH_PRESS -> R.mipmap.ic_chemex_foreground

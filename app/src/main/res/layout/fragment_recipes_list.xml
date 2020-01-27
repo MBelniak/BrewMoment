@@ -41,6 +41,14 @@
             android:textSize="20sp"
             android:text="@string/no_data_available" />
         <TextView
+            android:id="@+id/loading_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:text="@string/loading_data" />
+        <TextView
             android:id="@+id/not_logged_in"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

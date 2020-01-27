@@ -76,7 +76,7 @@ class BrewResultDetailsActivity : AppCompatActivity() {
             val rec = recipesViewModel.getRecipe(key)
             if (rec != null)
             {
-                if (rec.isShared) {
+                if (rec.isShared || rec.authorEmail == LoginUtil.getCurrentUserEmail()) {
                     recipe = rec
                     recipe_used.text = resources.getString(R.string.recipe_used, recipe.title)
                     recipe_used.setOnClickListener {

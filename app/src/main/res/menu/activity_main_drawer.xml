@@ -16,11 +16,11 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_my_results"
-                    android:icon="@drawable/ic_menu_results"
+                    android:icon="@drawable/ic_playlist_add_check"
                     android:title="@string/menu_my_results" />
                 <item
                     android:id="@+id/nav_users_results"
-                    android:icon="@drawable/ic_menu_results"
+                    android:icon="@drawable/ic_cloud_done_black"
                     android:title="@string/menu_users_results" />
             </group>
         </menu>
@@ -32,30 +32,40 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_my_recipes"
+                    android:icon="@drawable/ic_format_list_bulleted"
                     android:title="@string/menu_my_recipes"
                     />
                 <item
                     android:id="@+id/nav_common_recipes"
+                    android:icon="@drawable/ic_format_list_numbered"
                     android:title="@string/menu_common_recipes"
                     />
                 <item
                     android:id="@+id/nav_users_recipes"
+                    android:icon="@drawable/ic_storage"
                     android:title="@string/menu_users_recipes"
                     />
             </group>
         </menu>
     </item>
 
-    <item android:title="@string/account">
+    <item android:title="@string/other">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_account"
                     android:title="@string/menu_account"
+                    android:icon="@drawable/ic_person"
                     android:visible="false"/>
                 <item
                     android:id="@+id/nav_log_in"
+                    android:icon="@drawable/ic_vpn_key"
                     android:title="@string/menu_login"
+                    />
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/ic_help"
+                    android:title="@string/about"
                     />
             </group>
         </menu>

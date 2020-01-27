@@ -105,7 +105,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="#00BB00"
                 app:srcCompat="@drawable/ic_play_arrow">
 
             </com.google.android.material.floatingactionbutton.FloatingActionButton>
@@ -118,7 +118,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:backgroundTint="#FF0000"
+                app:backgroundTint="#CC0000"
                 app:srcCompat="@drawable/ic_stop">
 
             </com.google.android.material.floatingactionbutton.FloatingActionButton>

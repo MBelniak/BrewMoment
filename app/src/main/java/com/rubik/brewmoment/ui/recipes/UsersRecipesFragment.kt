@@ -51,6 +51,8 @@ class UsersRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragme
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
 
+        initUI()
+
         recipesViewModel.recipes.observe(this, Observer {
             (recyclerView.adapter as RecipesRecyclerViewAdapter).recipesDataset = recipesViewModel.getUsersFilteredRecipes(filt)
             (recyclerView.adapter as RecipesRecyclerViewAdapter).notifyDataSetChanged()
@@ -60,12 +62,7 @@ class UsersRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragme
         return rootView
     }
 
-    override fun onStart() {
-        super.onStart()
-        updateUI()
-    }
-
-    private fun updateUI() {
+    private fun initUI() {
         if (!LoginUtil.isUserLoggedIn())
         {
             recyclerView.visibility = View.GONE
@@ -75,19 +72,27 @@ class UsersRecipesFragment(private val filt: Filtering = Filtering.ALL) : Fragme
         }
         else
         {
-            val recipes = recipesViewModel.getUsersFilteredRecipes(filt)
+            recyclerView.visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.loading_data).visibility = View.VISIBLE
+            rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.GONE
+        }
+    }
 
-            if (recipes.isEmpty()) {
-                recyclerView.visibility = View.GONE
-                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE
-                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
-                rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.GONE
-
-            }
-            else
-            {
+    private fun updateUI() {
+        if (LoginUtil.isUserLoggedIn()) {
+            if ((recyclerView.adapter as RecipesRecyclerViewAdapter).recipesDataset.isNotEmpty()) {
                 recyclerView.visibility = View.VISIBLE
                 rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility =
+                    View.VISIBLE
+            } else {
+                recyclerView.visibility = View.VISIBLE
+                rootView.findViewById<TextView>(R.id.no_data_available).visibility = View.VISIBLE
+                rootView.findViewById<TextView>(R.id.loading_data).visibility = View.GONE
                 rootView.findViewById<TextView>(R.id.not_logged_in).visibility = View.GONE
                 rootView.findViewById<TextView>(R.id.choose_a_recipe_title).visibility = View.VISIBLE
             }

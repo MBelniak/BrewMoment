@@ -37,10 +37,10 @@ class RecipesRecyclerViewAdapter(var recipesDataset: List<Recipe>, val context: 
             recipeAuthor.text = context.getString(R.string.author, recipe.author)
             brewingTime.text = context.getString(R.string.brew_time, recipe.brewTimeToString())
             when (recipe.equipment) {
-                EqTypeEnum.AEROPRESS -> image.setImageResource(R.mipmap.ic_aeropress_icon)
-                EqTypeEnum.DRIP -> image.setImageResource(R.mipmap.ic_drip_icon)
+                EqTypeEnum.AEROPRESS -> image.setImageResource(R.mipmap.ic_aeropress_foreground)
+                EqTypeEnum.DRIP -> image.setImageResource(R.mipmap.ic_drip_icon_foreground)
                 EqTypeEnum.CHEMEX -> image.setImageResource(R.mipmap.ic_chemex_foreground)
-                EqTypeEnum.FRENCH_PRESS -> image.setImageResource(R.mipmap.ic_french_icon)
+                EqTypeEnum.FRENCH_PRESS -> image.setImageResource(R.mipmap.ic_french_icon_foreground)
             }
         }
     }
