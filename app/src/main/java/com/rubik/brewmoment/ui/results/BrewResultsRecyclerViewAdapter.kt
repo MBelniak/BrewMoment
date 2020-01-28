@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
 import com.rubik.brewmoment.model.EqTypeEnum
 import com.rubik.brewmoment.model.data.BrewResult
-import com.rubik.brewmoment.model.data.RecipesDAO
 import kotlinx.android.synthetic.main.result_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*

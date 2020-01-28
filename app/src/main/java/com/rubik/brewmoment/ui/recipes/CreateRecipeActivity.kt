@@ -287,27 +287,41 @@ class CreateRecipeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (isAvailable) {
-            AlertDialog.Builder(this)
-                .setTitle("Warning")
-                .setMessage("Are you sure you want to abort the recipe creation? Progress will not be saved.")
-
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(R.string.yes) { _, _ ->
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-
-                // A null listener allows the button to dismiss the dialog and take no further action.
-                .setNegativeButton(R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show()
+            showExitWarning()
             return true
         }
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
         return true
+    }
+
+    override fun onBackPressed() {
+        if (isAvailable) {
+            showExitWarning()
+            return
+        }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun showExitWarning() {
+        AlertDialog.Builder(this)
+            .setTitle("Warning")
+            .setMessage("Are you sure you want to abort the recipe creation? Progress will not be saved.")
+
+            // Specifying a listener allows you to take an action before dismissing the dialog.
+            // The dialog is automatically dismissed when a dialog button is clicked.
+            .setPositiveButton(R.string.yes) { _, _ ->
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+            // A null listener allows the button to dismiss the dialog and take no further action.
+            .setNegativeButton(R.string.no, null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
     }
 }

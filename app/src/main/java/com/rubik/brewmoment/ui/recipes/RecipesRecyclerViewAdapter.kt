@@ -9,8 +9,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rubik.brewmoment.R
-import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.model.EqTypeEnum
+import com.rubik.brewmoment.model.data.Recipe
 import kotlinx.android.synthetic.main.recipe_item.view.*
 
 class RecipesRecyclerViewAdapter(var recipesDataset: List<Recipe>, val context: Context)

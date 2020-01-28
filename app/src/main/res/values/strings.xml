@@ -146,6 +146,7 @@
     <string name="chosen_recipe_brew_dose">Dose: %1$s</string>
     <string name="chosen_recipe_brew_total_water">Total water: %1$s</string>
     <string name="total_water">*Total water:</string>
+    <string name="frenchpress_tile">Frenchpress tile</string>
     <string-array name="steps">
         <item>Pour water over</item>
         <item>Stir</item>

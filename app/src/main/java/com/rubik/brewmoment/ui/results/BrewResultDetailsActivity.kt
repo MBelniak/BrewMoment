@@ -1,21 +1,25 @@
 package com.rubik.brewmoment.ui.results
 
 import android.content.Intent
+import android.graphics.Paint.UNDERLINE_TEXT_FLAG
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.rubik.brewmoment.R
-import com.rubik.brewmoment.model.data.*
+import com.rubik.brewmoment.model.data.BrewResult
+import com.rubik.brewmoment.model.data.BrewResultsDAO
+import com.rubik.brewmoment.model.data.CommonRecipesData
+import com.rubik.brewmoment.model.data.Recipe
 import com.rubik.brewmoment.ui.recipes.RecipeDetailsActivity
 import com.rubik.brewmoment.util.LoginUtil
-import com.rubik.brewmoment.view_model.*
+import com.rubik.brewmoment.view_model.BrewResultsViewModel
+import com.rubik.brewmoment.view_model.RecipesViewModel
 import kotlinx.android.synthetic.main.activity_result_details.*
-import kotlinx.android.synthetic.main.recipe_item.*
+
 
 class BrewResultDetailsActivity : AppCompatActivity() {
 
@@ -54,6 +58,7 @@ class BrewResultDetailsActivity : AppCompatActivity() {
                     recipe_used.setOnClickListener {
                         showCommonRecipeDetails()
                     }
+                    recipe_used.paintFlags = recipe_used.getPaintFlags() or UNDERLINE_TEXT_FLAG
                 }
                 else
                     observeRecipes(brewResult.recipeKey)
