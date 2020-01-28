@@ -177,22 +177,12 @@ class BrewActivity : AppCompatActivity() {
         pauseOffset = 0
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        //stopwatchResume()
-//        //updateButtons()
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//
-////        if (stopwatchState == State.Running) {
-////            pauseStopwatch()
-////        }
-////        PrefUtil.setTimerOffset(pauseOffset, this)
-////        PrefUtil.setTimerState(stopwatchState, this)
-////        PrefUtil.setCurrentStep(currentStep, this)
-//    }
+    override fun onStart() {
+        super.onStart()
+        updateButtons()
+    }
+
+
 
 //    private fun stopwatchResume() {
 //        stopwatchState = PrefUtil.getTimerState(this)

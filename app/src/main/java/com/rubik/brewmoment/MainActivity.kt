@@ -1,7 +1,12 @@
 package com.rubik.brewmoment
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -11,12 +16,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import com.google.firebase.database.FirebaseDatabase
 import com.rubik.brewmoment.util.LoginUtil
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
@@ -59,9 +67,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val homeIntent = Intent(Intent.ACTION_MAIN)
-        homeIntent.addCategory( Intent.CATEGORY_HOME )
-        homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        startActivity(homeIntent)
+        if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            val homeIntent = Intent(Intent.ACTION_MAIN)
+            homeIntent.addCategory(Intent.CATEGORY_HOME)
+            homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(homeIntent)
+        }
+        else
+        {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
     }
 }

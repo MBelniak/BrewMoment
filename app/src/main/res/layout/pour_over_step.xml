@@ -34,7 +34,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="3"
-                android:hint="@string/_100"
                 android:textAlignment="textEnd"
                 android:textSize="20sp"
                 android:inputType="numberDecimal" />
@@ -85,8 +84,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:textSize="20sp"
-                android:textAlignment="textEnd"
-                android:hint="@string/_30"/>
+                android:textAlignment="textEnd" />
 
             <TextView
                 android:id="@+id/textView16"

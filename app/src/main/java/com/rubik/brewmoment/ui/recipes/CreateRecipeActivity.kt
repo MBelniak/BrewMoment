@@ -28,7 +28,6 @@ class CreateRecipeActivity : AppCompatActivity() {
 
     private var actionBar: ActionBar? = null
     private lateinit var stepsLinearLayout: LinearLayout
-    private var eqChoice: Int = 0
     private var isAvailable: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -178,7 +177,7 @@ class CreateRecipeActivity : AppCompatActivity() {
                 user.displayName.toString(),
                 user.email.toString(),
                 description_edit_text.text.toString(),
-                EqTypeEnum.values()[eqChoice],
+                EqTypeEnum.values()[eq_spinner.selectedItemPosition],
                 brew_time_minute_edit_text.text.toString().toInt(),
                 brew_time_seconds_edit_text.text.toString().toInt(),
                 GrindLevelEnum.values()[grind_level_spinner.selectedItemPosition],
