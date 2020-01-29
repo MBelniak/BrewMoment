@@ -58,7 +58,7 @@ class BrewResultDetailsActivity : AppCompatActivity() {
                     recipe_used.setOnClickListener {
                         showCommonRecipeDetails()
                     }
-                    recipe_used.paintFlags = recipe_used.getPaintFlags() or UNDERLINE_TEXT_FLAG
+                    recipe_used.paintFlags = recipe_used.paintFlags or UNDERLINE_TEXT_FLAG
                 }
                 else
                     observeRecipes(brewResult.recipeKey)
@@ -87,6 +87,7 @@ class BrewResultDetailsActivity : AppCompatActivity() {
                     recipe_used.setOnClickListener {
                         showRecipeDetails()
                     }
+                    recipe_used.paintFlags = recipe_used.paintFlags or UNDERLINE_TEXT_FLAG
                     updateView()
                 }
                 else
