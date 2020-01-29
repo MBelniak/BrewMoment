@@ -27,7 +27,6 @@ object CommonRecipesData {
         totalWater = 500f, steps = listOf(
             CustomStep("Rinse paper filter with water just off the boil."),
             CustomStep("Put grounds to V60 and create well in the middle of them."),
-            CustomStep("Start timer."),
             PourOverStep("Then, swirl the dripper.", 10, 60),
             WaitStep("", 0, 45),
             PourOverStep("", 30, 240),
@@ -44,7 +43,6 @@ object CommonRecipesData {
             listOf(
                 CustomStep("Rinse paper filter with water just off the boil."),
                 CustomStep("Put grounds to V60."),
-                CustomStep("Start timer."),
                 PourOverStep("Then, excavate the coffee with a spoon.", 10, 66),
                 WaitStep("", 0, 45),
                 PourOverStep("", 30, 294),
@@ -73,7 +71,6 @@ object CommonRecipesData {
             listOf(
                 CustomStep("Rinse paper filter with water just off the boil."),
                 CustomStep("Put grounds to the chemex and create well in the middle of them."),
-                CustomStep("Start timer."),
                 PourOverStep("Then, swirl the chemex.", 15, 60),
                 WaitStep("", 0, 45),
                 PourOverStep("", 30, 240),
