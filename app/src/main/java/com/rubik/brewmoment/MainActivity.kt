@@ -12,7 +12,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import com.rubik.brewmoment.ui.home.HomeFragment
 import com.rubik.brewmoment.util.LoginUtil
 
 

@@ -182,33 +182,6 @@ class BrewActivity : AppCompatActivity() {
         updateButtons()
     }
 
-
-
-//    private fun stopwatchResume() {
-//        stopwatchState = PrefUtil.getTimerState(this)
-//        when (stopwatchState) {
-//            State.Stopped -> {
-//                resetStopwatch()
-//            }
-//            State.Paused -> {
-//                pauseOffset = PrefUtil.getTimerOffset(this)
-//                stopwatch_chronometer.base = SystemClock.elapsedRealtime() - pauseOffset
-//                start_pause_button.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_play_arrow))
-//            }
-//            State.Running -> {
-//                pauseOffset = PrefUtil.getTimerOffset(this)
-//                stopwatch_chronometer.base = SystemClock.elapsedRealtime() - pauseOffset
-//                stopwatch_chronometer.start()
-//                start_pause_button.setImageDrawable(
-//                    ContextCompat.getDrawable(
-//                        this,
-//                        R.drawable.ic_pause
-//                    )
-//                )
-//            }
-//        }
-//    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         onBackPressed()
         return true
